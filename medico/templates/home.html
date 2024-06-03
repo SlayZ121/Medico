@@ -59,15 +59,15 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">About</a>
+            <a href="{{ url_for('about_page') }}" class="navbar-link title-md">About</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">Services</a>
+            <a  class="navbar-link title-md">Services</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">Contact</a>
+            <a href="{{ url_for('contact_page') }}" class="navbar-link title-md">Contact</a>
           </li>
 
         </ul>
@@ -112,8 +112,8 @@
         <ion-icon name="menu-outline"></ion-icon>
       </button>
 
-      <a href="login.html" class="btn has-before title-md">Log In</a>
-      <a href="signup.html" class="btn has-before title-md">Sign Up</a>
+      <a href="{{ url_for('login_page') }}" class="btn has-before title-md">Log In</a>
+      <a href="{{ url_for('signup_page') }}" class="btn has-before title-md">Sign Up</a>
 
 
       <div class="overlay" data-nav-toggler data-overlay></div>
