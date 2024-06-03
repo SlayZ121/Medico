@@ -1,7 +1,8 @@
-from flask import Flask
-app=Flask(__name__)
+from medico import app
 
 
-@app.route('/')
-def home():
- return "hello world"
+
+if __name__ == '__main__':
+    # Delete existing items
+    
+    app.run(debug=True)
