@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Signup | Medico</title>
-    <link rel="stylesheet" href="login.css">
+    <!-- Use url_for to reference the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,7 +14,8 @@
     <div class="container">
         <div class="cover">
             <div class="front">
-                <img src="assets\images\login.jpeg" alt="">
+                <!-- Use url_for to reference the image -->
+                <img src="{{ url_for('static', filename='images/login.jpeg') }}" alt="">
             </div>
             <div class="back">
                 <div class="text">
@@ -43,7 +45,7 @@
                             <div class="button input-box">
                                 <input type="submit" value="Submit">
                             </div>
-                            <div class="text sign-up-text">Already have an account? <a href="login.html">Login now</a>
+                            <div class="text sign-up-text">Already have an account? <a href="{{url_for('login_page')}}">Login now</a>
                             </div>
                         </div>
                     </form>

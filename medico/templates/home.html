@@ -6,23 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
   <title>Medico</title>
   <meta name="title" content="Medico">
-  <meta name="description" content="This is a madical html template made by codewithsadee">
+  <meta name="description" content="This is a medical HTML template made by codewithsadee">
 
-  <link rel="shortcut icon" href="assets\images\medico.png" type="image/svg+xml">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/medico.png') }}" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
-  <link rel="preload" as="image" href="./assets/images/hero-bg.png">
-
+  <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero-banner.png') }}">
+  <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero-bg.png') }}">
 </head>
 
 <body id="top">
@@ -35,78 +32,62 @@
     <div class="container">
 
       <a href="#" class="logo">
-        <img src="assets\images\Medico logo.png" width="136" height="46" alt="Doclab home">
+        <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Doclab home">
       </a>
 
       <nav class="navbar" data-navbar>
-
         <div class="navbar-top">
-
           <a href="#" class="logo">
-            <img src="assets\images\Medico logo.png" width="136" height="46" alt="Doclab home">
+            <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Doclab home">
           </a>
 
-          <button class="nav-close-btn" aria-label="clsoe menu" data-nav-toggler>
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
             <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
           </button>
-
         </div>
 
         <ul class="navbar-list">
-
           <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">Home</a>
+            <a href="{{url_for('home_page')}}" class="navbar-link title-md">Home</a>
           </li>
-
           <li class="navbar-item">
-            <a href="{{ url_for('about_page') }}" class="navbar-link title-md">About</a>
+            <a href="#" class="navbar-link title-md">About</a>
           </li>
-
           <li class="navbar-item">
-            <a  class="navbar-link title-md">Services</a>
+            <a href="#" class="navbar-link title-md">Services</a>
           </li>
-
           <li class="navbar-item">
-            <a href="{{ url_for('contact_page') }}" class="navbar-link title-md">Contact</a>
+            <a href="#" class="navbar-link title-md">Contact</a>
           </li>
-
         </ul>
 
-
         <ul class="social-list">
-
           <li>
             <a href="#" class="social-link">
               <ion-icon name="logo-twitter"></ion-icon>
             </a>
           </li>
-
           <li>
             <a href="#" class="social-link">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
-
           <li>
             <a href="#" class="social-link">
               <ion-icon name="logo-pinterest"></ion-icon>
             </a>
           </li>
-
           <li>
             <a href="#" class="social-link">
               <ion-icon name="logo-instagram"></ion-icon>
             </a>
           </li>
-
           <li>
             <a href="#" class="social-link">
               <ion-icon name="logo-youtube"></ion-icon>
             </a>
           </li>
-
         </ul>
-
       </nav>
 
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
@@ -116,51 +97,31 @@
       <a href="{{ url_for('login_page') }}" class="btn has-before title-md">Log In</a>
       <a href="{{ url_for('signup_page') }}" class="btn has-before title-md">Sign Up</a>
 
-
       <div class="overlay" data-nav-toggler data-overlay></div>
-
     </div>
   </header>
 
-
-
-
-
   <main>
     <article>
-
-
-
-      <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home">
+      <section class="section hero" style="background-image: url('{{ url_for('static', filename='images/hero-bg.png') }}')" aria-label="home">
         <div class="container">
-
           <div class="hero-content">
-
             <p class="hero-subtitle has-before" data-reveal="left">Welcome To Medico</p>
-
             <h1 class="headline-lg hero-title" data-reveal="left">
               Your Health, <br>
               Our Mission!
             </h1>
-
-
-
           </div>
 
           <figure class="hero-banner" data-reveal="right">
-            <img src="./assets/images/hero-banner.jpeg" width="590" height="517" loading="eager" alt="hero banner"
-              class="w-100">
+            <img src="{{ url_for('static', filename='images/hero-banner.jpeg') }}" width="590" height="517" loading="eager" alt="hero banner" class="w-100">
           </figure>
-
         </div>
       </section>
 
-
-
-      <script src="./assets/js/script.js"></script>
-
-
-
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </article>
+  </main>
 </body>
 
 </html>
