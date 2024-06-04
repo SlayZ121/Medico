@@ -1,10 +1,43 @@
 'use strict';
 
+ const inputs = document.querySelectorAll("input"),
+  button = document.querySelector("button");
+
+inputs.forEach((input, index1) => {
+  input.addEventListener("keyup", (e) => {
+       const currentInput = input,
+      nextInput = input.nextElementSibling,
+      prevInput = input.previousElementSibling;
+
+    if (currentInput.value.length > 1) {
+      currentInput.value = "";
+      return;
+    }
+    if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+      nextInput.removeAttribute("disabled");
+      nextInput.focus();
+    }
+
+    if (e.key === "Backspace") {
+      inputs.forEach((input, index2) => {
+        if (index1 <= index2 && prevInput) {
+          input.setAttribute("disabled", true);
+          input.value = "";
+          prevInput.focus();
+        }
+      });
+    }
+    if (!inputs[3].disabled && inputs[3].value !== "") {
+      button.classList.add("active");
+      return;
+    }
+    button.classList.remove("active");
+  });
+});
+
+window.addEventListener("load", () => inputs[0].focus());
 
 
-/**
- * add event listener on multiple elements
- */
 
 const addEventOnElements = function (elements, eventType, callback) {
   for (let i = 0, len = elements.length; i < len; i++) {
@@ -13,12 +46,6 @@ const addEventOnElements = function (elements, eventType, callback) {
 }
 
 
-
-/**
- * PRELOADER
- * 
- * preloader will be visible until document load
- */
 
 const preloader = document.querySelector("[data-preloader]");
 
@@ -29,12 +56,7 @@ window.addEventListener("load", function () {
 
 
 
-/**
- * MOBILE NAVBAR
- * 
- * show the mobile navbar when click menu button
- * and hidden after click menu close button or overlay
- */
+
 
 const navbar = document.querySelector("[data-navbar]");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
@@ -49,12 +71,6 @@ const toggleNav = function () {
 addEventOnElements(navTogglers, "click", toggleNav);
 
 
-
-/**
- * HEADER & BACK TOP BTN
- * 
- * active header & back top btn when window scroll down to 100px
- */
 
 const header = document.querySelector("[data-header]");
 const backTopBtn = document.querySelector("[data-back-top-btn]");
@@ -71,11 +87,6 @@ const activeElementOnScroll = function () {
 
 window.addEventListener("scroll", activeElementOnScroll);
 
-
-
-/**
- * SCROLL REVEAL
- */
 
 const revealElements = document.querySelectorAll("[data-reveal]");
 
