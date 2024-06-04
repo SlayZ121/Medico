@@ -1,5 +1,5 @@
 from medico import app
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, request, redirect, url_for, flash
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -37,7 +37,24 @@ def home_page():
 def otp_page():
     return render_template('otp.html')
 
+@app.route('/signup', methods= ['GET', 'POST'])
+def signup_page():
+    
+    # form = RegisterForm()
+    # if form.validate_on_submit():
+    #     user_to_create = User(username=form.username.data,
+    #                           email_address=form.email_address.data,
+    #                           password=form.password1.data)
+    #     db.session.add(user_to_create)
+    #     db.session.commit()
+    #     login_user(user_to_create)
+    #     flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category='success')
+    #     return redirect(url_for('market_page'))
+    # if form.errors != {}: #If there are not errors from the validations
+    #     for err_msg in form.errors.values():
+    #         flash(f'There was an error with creating a user: {err_msg}', category='danger')
 
+    return render_template('signup.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -66,7 +83,7 @@ def login_page():
 def verify():
     email = request.form['email']
     send_otp(email)
-    return render_template('signup.html')
+    return render_template('otp.html')
 
 @app.route('/validate', methods=['POST'])
 def validate():
