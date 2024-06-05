@@ -94,8 +94,13 @@
         <ion-icon name="menu-outline"></ion-icon>
       </button>
 
+      {% if current_user.is_authenticated %}
+       <a href="{{ url_for('logout_page') }}" class="btn has-before title-md">Logout</a>
+      {% else %}
+
       <a href="{{ url_for('login_page') }}" class="btn has-before title-md">Log In</a>
       <a href="{{ url_for('signup_page') }}" class="btn has-before title-md">Sign Up</a>
+      {% endif %}
 
       <div class="overlay" data-nav-toggler data-overlay></div>
     </div>

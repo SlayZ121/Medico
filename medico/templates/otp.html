@@ -8,7 +8,8 @@
     <title>OTP Verification Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/otp.css') }}" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <script src="assets\js\script.js" defer></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </head>
 
 <body>
@@ -17,16 +18,18 @@
             <i class="bx bxs-check-shield"></i>
         </header>
         <h4>Enter OTP Code</h4>
-        <form action="/validate">
+        <form id="otp-form" action="/validate" method="post">
             <div class="input-field">
-                <input type="number" />
-                <input type="number" disabled />
-                <input type="number" disabled />
-                <input type="number" disabled />
+                <input type="number" maxlength="1" class="otp-input" required />
+                <input type="number" maxlength="1" class="otp-input" disabled />
+                <input type="number" maxlength="1" class="otp-input" disabled />
+                <input type="number" maxlength="1" class="otp-input" disabled  />
             </div>
             <button type="submit">Verify OTP</button>
         </form>
     </div>
+    
+
 </body>
 
 </html>

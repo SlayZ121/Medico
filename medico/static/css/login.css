@@ -16,6 +16,45 @@ body {
     background: #1B9CE4 url('assets\images\hero-bg.png') no-repeat center center/cover;
     padding: 30px;
 }
+.role-dropdown {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            border-bottom: 4px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .role-dropdown select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding-left: 30px;
+            padding-right: 30px;
+            }
+
+        .role-dropdown select:focus {
+            outline: none;
+        }
+
+        .role-dropdown::before {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            position: absolute;
+            right: 20px; /* Adjust position of dropdown arrow */
+            color: #666;
+        }
+
+                .input-box i.fas {
+                    margin-right: 10px;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
 
 .container {
     position: relative;
@@ -236,6 +275,46 @@ body {
 .container #flip {
     display: none;
 }
+
+.role-dropdown {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .role-dropdown select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding-left: 30px;
+            padding-right: 30px;
+            }
+
+        .role-dropdown select:focus {
+            outline: none;
+        }
+
+        .role-dropdown::before {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            position: absolute;
+            right: 20px; /* Adjust position of dropdown arrow */
+            color: #666;
+        }
+
+                .input-box i.fas {
+                    margin-right: 10px;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
 
 @media (max-width: 730px) {
     .container .cover {
