@@ -93,8 +93,15 @@ def validate():
         email_address = session.get('email')
         password = session.get('password')
         role = session.get('role')
-        
+
         if username and email_address and password and role:
+            # Check if a user with the same username or email already exists
+            existing_user = User.query.filter((User.username == username) | (User.email_address == email_address)).first()
+            if existing_user:
+                flash('A user with the same username or email already exists. Please try signing up with a different username or email.', category='danger')
+                return redirect(url_for('signup_page'))
+
+            
             user_to_create = User(username=username,
                                   email_address=email_address,
                                   password=password,
