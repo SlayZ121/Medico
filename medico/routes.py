@@ -47,11 +47,22 @@ def otp_page():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page():
+    
     if request.method == 'POST':
         session['username'] = request.form['username']
         session['email'] = request.form['email']
         session['password'] = request.form['password']
         session['role'] = request.form['role']
+        username = session.get('username')
+        email_address = session.get('email')
+        password = session.get('password')
+        role = session.get('role')
+        if username and email_address and password and role:
+            
+            existing_user = User.query.filter((User.username == username) | (User.email_address == email_address)).first()
+            if existing_user:
+                flash('A user with the same username or email already exists. Please try signing up with a different username or email.', category='danger')
+                return redirect(url_for('signup_page'))
         return redirect(url_for('verify'))
     return render_template('signup.html')
 
@@ -94,30 +105,20 @@ def validate():
         password = session.get('password')
         role = session.get('role')
 
-        if username and email_address and password and role:
-            # Check if a user with the same username or email already exists
-            existing_user = User.query.filter((User.username == username) | (User.email_address == email_address)).first()
-            if existing_user:
-                flash('A user with the same username or email already exists. Please try signing up with a different username or email.', category='danger')
-                return redirect(url_for('signup_page'))
-
-            
-            user_to_create = User(username=username,
+        user_to_create = User(username=username,
                                   email_address=email_address,
                                   password=password,
                                   role=role)
-            db.session.add(user_to_create)
-            db.session.commit()
-            login_user(user_to_create)
-            flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category='success')
-            session.pop('username', None)
-            session.pop('email', None)
-            session.pop('password', None)
-            session.pop('role', None)
-            return redirect(url_for('home_page'))
-        else:
-            flash('Session expired or invalid data. Please try signing up again.', category='danger')
-            return redirect(url_for('signup_page'))
+        db.session.add(user_to_create)
+        db.session.commit()
+        login_user(user_to_create)
+        flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category='success')
+        session.pop('username', None)
+        session.pop('email', None)
+        session.pop('password', None)
+        session.pop('role', None)
+        return redirect(url_for('home_page'))
+        
     else:
         flash('Invalid OTP. Please try again.', category='danger')
         return render_template('otp.html')

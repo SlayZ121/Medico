@@ -1092,3 +1092,56 @@ body.nav-active {
 
 
 }
+.flashes {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.flash {
+  padding: 15px;
+  margin: 0;
+  text-align: center;
+  color: #ffffff;
+}
+
+.flash-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.flash-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.flash-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.flash-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.close {
+  float: right;
+  
+  line-height: 1;
+  color: #000;
+  text-shadow: none;
+  opacity: 0.5;
+  border: none;
+  background: none;
+  font-size: 3rem;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.75;
+}

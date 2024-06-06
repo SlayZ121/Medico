@@ -8,11 +8,23 @@
     <title>OTP Verification Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/otp.css') }}" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
 </head>
 
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flashes">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
     <div class="container">
         <header>
             <i class="bx bxs-check-shield"></i>
@@ -28,8 +40,9 @@
             <button type="submit">Verify OTP</button>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='js/otp.js') }}"></script>
+        
     
-
 </body>
 
 </html>

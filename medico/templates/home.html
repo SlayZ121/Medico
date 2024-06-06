@@ -23,6 +23,7 @@
 </head>
 
 <body id="top">
+  
 
   <div class="preloader" data-preloader>
     <div class="circle"></div>
@@ -32,13 +33,13 @@
     <div class="container">
 
       <a href="#" class="logo">
-        <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Medico home">
+        <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Doclab home">
       </a>
 
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
           <a href="#" class="logo">
-            <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Medico home">
+            <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Doclab home">
           </a>
 
           <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
@@ -48,24 +49,16 @@
 
         <ul class="navbar-list">
           <li class="navbar-item">
-            <a href="{{ url_for('home_page') }}" class="navbar-link title-md">Home</a>
+            <a href="{{url_for('home_page')}}" class="navbar-link title-md">Home</a>
           </li>
           <li class="navbar-item">
-            <a href="#about" class="navbar-link title-md">About</a>
-          </li>
-          <li class="navbar-item dropdown">
-            <a href="#services" class="dropbtn">Services</a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-item"><a href="#appointments">Appointments</a></li>
-              <li class="dropdown-item"><a href="#scheduler">Scheduler</a></li>
-              <li class="dropdown-item"><a href="#bmi">BMI Calculator</a></li>
-              <li class="dropdown-item"><a href="#dietary">Dietary Services</a></li>
-              <li class="dropdown-item"><a href="#gynecology">Gynecology Services</a></li>
-              <li class="dropdown-item"><a href="#complaint">Complaint Services</a></li>
-            </ul>
+            <a href="#" class="navbar-link title-md">About</a>
           </li>
           <li class="navbar-item">
-            <a href="#footer" class="navbar-link title-md">Contact</a>
+            <a href="#" class="navbar-link title-md">Services</a>
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="navbar-link title-md">Contact</a>
           </li>
         </ul>
 
@@ -103,8 +96,9 @@
       </button>
 
       {% if current_user.is_authenticated %}
-      <a href="{{ url_for('logout_page') }}" class="btn has-before title-md">Logout</a>
+       <a href="{{ url_for('logout_page') }}" class="btn has-before title-md">Logout</a>
       {% else %}
+
       <a href="{{ url_for('login_page') }}" class="btn has-before title-md">Log In</a>
       <a href="{{ url_for('signup_page') }}" class="btn has-before title-md">Sign Up</a>
       {% endif %}
@@ -112,6 +106,20 @@
       <div class="overlay" data-nav-toggler data-overlay></div>
     </div>
   </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flashes">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
 
   <main>
     <article>
@@ -131,71 +139,9 @@
         </div>
       </section>
 
-      <section id="about" class="section about" aria-labelledby="about-label">
-        <div class="video-container">
-          <video autoplay muted loop id="myVideo">
-            <source src="{{ url_for('static', filename='images/health.mp4') }}" type="video/mp4">
-          </video>
-        </div>
-        <div class="container">
-          <div class="about-content">
-            <p class="section-subtitle title-lg has-after" id="about-label" data-reveal="left">About Us</p>
-            <h2 class="headline-md" data-reveal="left">Welcome to the Health Centre <br> at ABV-IIITM Gwalior</h2>
-            <p class="section-text" data-reveal="left">
-              The Health Centre is committed to promoting the health and wellness of the campus community by providing prevention,
-              education, and treatment services. <br>
-              Health Centre is located in A block of ABV-IIITM Gwalior.
-            </p>
-            <ul class="tab-list" data-reveal="left">
-              <li>
-                <button class="tab-btn active">Vision</button>
-              </li>
-              <li>
-                <button class="tab-btn">Mission</button>
-              </li>
-              <li>
-                <button class="tab-btn">Strategy</button>
-              </li>
-            </ul>
-            <div class="wrapper">
-              <ul class="about-list">
-                <li class="about-item" data-reveal="left">
-                  <span class="span"><strong>Promote Health:</strong> Encourage a healthy lifestyle through various wellness programs.</span>
-                </li>
-                <li class="about-item" data-reveal="left">
-                  <span class="span"><strong>Prevent Illness:</strong> Provide preventive care and health education to reduce the risk of illnesses.</span>
-                </li>
-                <li class="about-item" data-reveal="left">
-                  <span class="span"><strong>Treat Patients:</strong> Offer quality medical treatment and support to those in need.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </article>
+  </main>
+</body>
 
-      <footer id="footer" class="footer" style="background-image: url('{{ url_for('static', filename='images/footer-bg.png') }}');">
-        <div class="container">
-          <div class="section footer-top">
-            <div class="footer-brand" data-reveal="bottom">
-              <a href="#" class="logo">
-                <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" loading="lazy" alt="Medico home">
-              </a>
-              <ul class="contact-list has-after">
-                <li class="contact-item">
-                  <div class="item-icon">
-                    <ion-icon name="mail-open-outline"></ion-icon>
-                  </div>
-                  <div>
-                    <p>
-                      Main Email : <a href="mailto:medico@gmail.com" class="contact-link">medico@gmail.com</a>
-                    </p>
-                    <p>
-                      Inquiries : <a href="mailto:Info@mail.com" class="contact-link">medico@gmail.com</a>
-                    </p>
-                  </div>
-                </li>
-                <li class="contact-item">
-                  <div class="item-icon">
-                    <ion-icon name="call-outline"></ion-icon>
-                  </div>
+</html>
