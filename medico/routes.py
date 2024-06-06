@@ -45,6 +45,11 @@ def home_page():
 def otp_page():
     return render_template('otp.html')
 
+@app.route('/bmi')
+@login_required
+def bmi_page():
+    return render_template('bmi.html')
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page():
     

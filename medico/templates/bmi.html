@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bmi.css') }}">
+  
+  
+  <title>SuperCalculator - BMI Calculator</title>
+  
+</head>
+
+<body>
+    
+    <div class="container">
+        
+      
+        <!-- First row -->
+        <div class="row">
+          <!-- First column for height and weight -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <form name="myform">
+                  <h2 class="font-weight-bold">Enter Your Height and Weight</h2>
+                  <div class="form-row mt-3">
+                    <div class="form-group col-md-6">
+                      <label for="number1">Weight (In Kg)</label>
+                      <input type="text" class="form-control" id="number1" placeholder="Weight (In Kg)" onkeyup="sum()" autocomplete="off" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="number2">Height (In cm)</label>
+                      <input type="text" class="form-control" id="number2" placeholder="Height (In cm)" onkeyup="sum()" autocomplete="off" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="result">Your BMI is</label>
+                    <input type="text" class="form-control" id="result" name="result" placeholder="Your BMI is" autocomplete="off" required disabled />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Second column for pound and feet inches converter -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="font-weight-bold">Convert Pound into Feet</h2>
+                <form name="cform">
+                  <div class="form-row mt-3">
+                    <div class="form-group col-md-4">
+                      <label for="feet">Feet</label>
+                      <input type="text" class="form-control" id="feet" name="feet" placeholder="Feet" onkeyup="convert()" autocomplete="off" required />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="inches">Inches</label>
+                      <input type="text" class="form-control" id="inches" name="inches" placeholder="Inches" onkeyup="convert()" autocomplete="off" required />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="cm">Cm</label>
+                      <input type="text" class="form-control" id="cm" placeholder="Cm" autocomplete="off" required />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="pound">Pound</label>
+                      <input type="text" class="form-control" id="pound" name="pound" placeholder="Pound" onkeyup="pkconvert()" autocomplete="off" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="kg">Kilogram</label>
+                      <input type="text" class="form-control" id="kg" placeholder="Kilogram" onkeyup="pkconvert()" autocomplete="off" required />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Second row for BMI level indicator -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="font-weight-bold">BMI Level Indicator</h2>
+                <table class="table table-bordered mt-3">
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>From</th>
+                        <th>To</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Very severely underweight</td>
+                        <td>-</td>
+                        <td>15.0</td>
+                      </tr>
+                      <tr>
+                        <td>Severely underweight</td>
+                        <td>15</td>
+                        <td>16</td>
+                      </tr>
+                      <tr class="table-primary">
+                        <td>Underweight</td>
+                        <td>16</td>
+                        <td>18.5</td>
+                      </tr>
+                      <tr class="table-success">
+                        <td>Normal (healthy weight)</td>
+                        <td>18.5</td>
+                        <td>25</td>
+                      </tr>
+                      <tr class="table-warning">
+                        <td>Overweight</td>
+                        <td>25</td>
+                        <td>30</td>
+                      </tr>
+                      <tr class="table-info">
+                        <td>Obese Class I (Moderately obese)</td>
+                        <td>30</td>
+                        <td>35</td>
+                      </tr>
+                      <tr class="table-danger">
+                        <td>Obese Class II (Severely obese)</td>
+                        <td>35</td>
+                        <td>40</td>
+                      </tr>
+                      <tr class="custom-row">
+                        <td>Obese Class III (Very severely obese)</td>
+                        <td>40</td>
+                        <td>-</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <!-- BMI level table -->
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Third row for percentage of body fat -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="font-weight-bold">Percentage of Body Fat</h2>
+                <form name="fform">
+                    <div class="form-group">
+                      <label for="age">Age</label>
+                      <input type="text" class="form-control" id="age" name="age" placeholder="AGE" onkeyup="check()" autocomplete="off" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <div class="form-check">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="male" value="male" checked>
+                        <label class="form-check-label" for="male">Male</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="female" value="female">
+                        <label class="form-check-label" for="female">Female</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="bmi">BMI</label>
+                      <input type="text" class="form-control" id="bmi" name="bmi" placeholder="BMI" onkeyup="check()" autocomplete="off" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="fat">Your Fat % is</label>
+                      <input type="text" class="form-control" id="fat" placeholder="Your Fat % is" autocomplete="off" required disabled />
+                    </div>
+                  </form>
+                </div>
+              </div>
+        <!-- Add space here -->
+        <div style="margin-bottom: 50px;"></div>
+      </div>
+      
+      <script src="{{ url_for('static', filename='js/bmi.js') }}">
+      </script>
+</body>
+
+</html>

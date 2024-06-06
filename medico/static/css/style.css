@@ -70,10 +70,14 @@ li {
   list-style: none;
 }
 html {
+  
+    
+
   scroll-behavior: smooth;
 }
 .containhead{
 max-height: 50px!important;
+
 }
 a,
 img,
@@ -99,6 +103,7 @@ button {
 }
 
 body {
+
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -254,6 +259,7 @@ table tbody tr:hover {
 }
 
 .about-item {
+  
   display: flex;
   align-items: center;
   gap: 20px;
@@ -299,12 +305,12 @@ table tbody tr:hover {
 
 /*FOOTER*/
 .footer {
+  
   background-color: var(--midnight-green);
   color: var(--white);
   background-size: contain;
   background-position: top right;
   background-repeat: no-repeat;
-  
 }
 
 .footer-top {
@@ -324,6 +330,7 @@ table tbody tr:hover {
 }
 
 .contact-item {
+  
   display: flex;
   align-items: flex-start;
   gap: 12px;

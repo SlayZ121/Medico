@@ -9,22 +9,22 @@ document.querySelectorAll('.close').forEach(button => {
 const inputs = document.querySelectorAll("input"),
   button = document.querySelector("button");
 
-  document.addEventListener('DOMContentLoaded', (event) => {
-  const contactLink = document.querySelector('.navbar-link[href="#about"]');
+//   document.addEventListener('DOMContentLoaded', (event) => {
+//   const contactLink = document.querySelector('.navbar-link[href="#about"]');
 
-  contactLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
-  });
-});
-document.addEventListener('DOMContentLoaded', (event) => {
-  const contactLink = document.querySelector('.navbar-link[href="#footer"]');
+//   contactLink.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+// document.addEventListener('DOMContentLoaded', (event) => {
+//   const contactLink = document.querySelector('.navbar-link[href="#footer"]');
 
-  contactLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('#footer').scrollIntoView({ behavior: 'smooth' });
-  });
-});
+//   contactLink.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     document.querySelector('#footer').scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
 
 inputs.forEach((input, index1) => {
   input.addEventListener("keyup", (e) => {

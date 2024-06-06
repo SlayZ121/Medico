@@ -29,7 +29,7 @@
   </div>
 
   <header class="header" data-header>
-    <div class="container containhead">
+    <div class="container containhead" id="containhead">
 
       <a href="#" class="logo">
         <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Doclab home">
@@ -58,7 +58,7 @@
             <ul class="dropdown-menu">
               <li class="dropdown-item"><a href="#appointments">Appointments</a></li>
               <li class="dropdown-item"><a href="#scheduler">Scheduler</a></li>
-              <li class="dropdown-item"><a href="#bmi">BMI Calculator</a></li>
+              <li class="dropdown-item"><a href="{{ url_for('bmi_page') }}">BMI Calculator</a></li>
               <li class="dropdown-item"><a href="#dietary">Dietary Services</a></li>
               <li class="dropdown-item"><a href="#gynecology">Gynecology Services</a></li>
               <li class="dropdown-item"><a href="#complaint">Complaint Services</a></li>
@@ -105,7 +105,7 @@
 
   <main>
     <article>
-      <section class="section hero" style="background-image: url('{{ url_for('static', filename='images/hero-bg.png') }}')" aria-label="home">
+      <section class="section hero tochange" id="tochange" style="background-image: url('{{ url_for('static', filename='images/hero-bg.png') }}')" aria-label="home">
         <div class="container">
           <div class="hero-content">
             <p class="hero-subtitle has-before" data-reveal="left">Welcome To Medico</p>
@@ -190,7 +190,7 @@
     
       </div>
     </section>
-       <footer id="footer" class="footer" style="background-image: url('{{ url_for('static', filename='images/footer-bg.png') }}')">
+       <footer tabindex="-1" id="footer" class="footer" style="background-image: url('{{ url_for('static', filename='images/footer-bg.png') }}')">
 
         <div class="container">
       
@@ -212,11 +212,11 @@
       
                   <div>
                     <p>
-                      Main Email : <a href="mailto:medico@gmail.com" class="contact-link">medico@gmail.com</a>
+                      Main Email : <a href="mailto:medico@gmail.com" class="contact-link">medicohealthorg@gmail.com</a>
                     </p>
       
                     <p>
-                      Inquiries : <a href="mailto:Info@mail.com" class="contact-link">medico@gmail.com</a>
+                      Inquiries : <a href="mailto:Info@mail.com" class="contact-link">medicohealthorg@gmail.com</a>
                     </p>
                   </div>
       
@@ -264,7 +264,7 @@
               <p class="headline-sm footer-list-title">Subscribe</p>
       
               <form action="" class="footer-form">
-                <input type="email" name="email" placeholder="Email" class="input-field title-lg">
+                <input tabindex="-1" type="email" name="email" placeholder="Email" class="input-field title-lg">
       
                 <button type="submit" class="btn has-before title-md">Subscribe</button>
               </form>
@@ -292,8 +292,16 @@
 
    
 
-
-      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+      <script>
+        window.addEventListener("load", function() {
+   
+    document.getElementById("tochange").focus();
+});
+    </script>
+      <script src="{{ url_for('static', filename='js/script.js') }}">
+      </script>
+      
+    
     
 </body>
 
