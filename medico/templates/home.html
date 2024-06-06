@@ -8,8 +8,7 @@
 
   <title>Medico</title>
   <meta name="title" content="Medico">
-  <meta name="description" content="This is a medical HTML template made by codewithsadee">
-
+  
   <link rel="shortcut icon" href="{{ url_for('static', filename='images/medico.png') }}" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +29,7 @@
   </div>
 
   <header class="header" data-header>
-    <div class="container">
+    <div class="container containhead">
 
       <a href="#" class="logo">
         <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Doclab home">
@@ -54,45 +53,26 @@
           <li class="navbar-item">
             <a href="#" class="navbar-link title-md">About</a>
           </li>
-          <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">Services</a>
+          <li class="navbar-item dropdown">
+            <a href="#services" class="dropbtn">Services</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="#appointments">Appointments</a></li>
+              <li class="dropdown-item"><a href="#scheduler">Scheduler</a></li>
+              <li class="dropdown-item"><a href="#bmi">BMI Calculator</a></li>
+              <li class="dropdown-item"><a href="#dietary">Dietary Services</a></li>
+              <li class="dropdown-item"><a href="#gynecology">Gynecology Services</a></li>
+              <li class="dropdown-item"><a href="#complaint">Complaint Services</a></li>
+            </ul>
           </li>
           <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">Contact</a>
+            <a href="#footer" class="navbar-link title-md">Contact</a>
           </li>
-        </ul>
 
-        <ul class="social-list">
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-pinterest"></ion-icon>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-youtube"></ion-icon>
-            </a>
-          </li>
         </ul>
       </nav>
 
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-        <ion-icon name="menu-outline"></ion-icon>
+        
       </button>
 
       {% if current_user.is_authenticated %}
@@ -105,6 +85,8 @@
 
       <div class="overlay" data-nav-toggler data-overlay></div>
     </div>
+
+
   </header>
   {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -138,10 +120,182 @@
           </figure>
         </div>
       </section>
+      <section id= "about" class="section about" aria-labelledby="about-label">
+        
+        <div class="video-container">
+          <video autoplay muted loop id="myVideo">
+            <source src="{{ url_for('static', filename='images/health.mp4') }}" type="video/mp4">
+          </video>
+        </div>
+        <div class="container">
+    
+        <div class="about-content">
+    
+        <h1></h1>
+        <h1></h1>
+          <h2 class="headline-md" data-reveal="left">Welcome to the Health Centre <br> at ABV-IIITM Gwalior</h2>
+          <p class="section-text" data-reveal="left">
+            The Health Centre is committed to promoting the health and wellness of the campus community by providing prevention,
+            education, and treatment services. <br>
+            Health Centre is located in A block of ABV-IIITM Gwalior.
+          </p>
+    
+          
+        
+
+          <ul class="tab-list" data-reveal="left">
+    
+            <li>
+              <button class="tab-btn active">Vision</button>
+            </li>
+    
+            <li>
+              <button class="tab-btn">Mission</button>
+            </li>
+    
+            <li>
+              <button class="tab-btn">Strategy</button>
+            </li>
+    
+          </ul>
+    
+    
+          <div class="wrapper">
+    
+            <ul class="about-list">
+    
+              <li class="about-item" data-reveal="left">
+    
+                <span class="span"><strong>Promote Health:</strong> Encourage a healthy lifestyle through various wellness programs.</span>
+              </li>
+    
+              <li class="about-item" data-reveal="left">
+    
+                <span class="span"><strong>Prevent Illness:</strong> Provide preventive care and health education to reduce the risk of illnesses.</span>
+              </li>
+    
+              <li class="about-item" data-reveal="left">
+    
+                <span class="span"><strong>Treat Patients:</strong> Offer quality medical treatment and support to those in need.</span>
+              </li>
+    
+            </ul>
+    
+          </div>
+    
+        </div>
+        </div>
+    
+        
+    
+      </div>
+    </section>
+       <footer id="footer" class="footer" style="background-image: url('{{ url_for('static', filename='images/footer-bg.png') }}')">
+
+        <div class="container">
+      
+          <div class="section footer-top">
+      
+            <div class="footer-brand" data-reveal="bottom">
+      
+              <a href="#" class="logo">
+                <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" loading="lazy" alt="Medico home">
+              </a>
+      
+              <ul class="contact-list has-after">
+      
+                <li class="contact-item">
+      
+                  <div class="item-icon">
+                    
+                  </div>
+      
+                  <div>
+                    <p>
+                      Main Email : <a href="mailto:medico@gmail.com" class="contact-link">medico@gmail.com</a>
+                    </p>
+      
+                    <p>
+                      Inquiries : <a href="mailto:Info@mail.com" class="contact-link">medico@gmail.com</a>
+                    </p>
+                  </div>
+      
+                </li>
+      
+                <li class="contact-item">
+      
+                  <div>
+                    <p>
+                      Office Telephone : <a href="tel:9573785449" class="contact-link">9573785449</a>
+                    </p>
+      
+                    <p>
+                      Mobile : <a href="tel:9676293647" class="contact-link">9676234876</a>
+                    </p>
+                  </div>
+      
+                </li>
+      
+              </ul>
+      
+            </div>
+      
+            <div class="footer-list" data-reveal="bottom">
+      
+              <p class="headline-sm footer-list-title">About Us</p>
+      
+              
+      
+              <address class="address">
+                
+      
+                <span class="text">
+                  ABV-IIITM Gwalior<br>
+                  A-BLOCK
+                </span>
+              </address>
+      
+            </div>
+      
+            
+      
+            <div class="footer-list" data-reveal="bottom">
+      
+              <p class="headline-sm footer-list-title">Subscribe</p>
+      
+              <form action="" class="footer-form">
+                <input type="email" name="email" placeholder="Email" class="input-field title-lg">
+      
+                <button type="submit" class="btn has-before title-md">Subscribe</button>
+              </form>
+      
+              <p class="text">
+                Get the latest updates via email. Any time you may unsubscribe
+              </p>
+      
+            </div>
+      
+          </div>
+      
+          <div class="footer-bottom">
+      
+            <p class="text copyright">
+              &copy; Medico 2024 | All Rights Reserved by ABV-IIITM
+            </p>
+      
+            
+      
+          </div>
+      
+        </div>
+      </footer>
+
+   
+
 
       <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    </article>
-  </main>
+    
 </body>
 
 </html>
+

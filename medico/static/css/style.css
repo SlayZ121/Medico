@@ -72,7 +72,9 @@ li {
 html {
   scroll-behavior: smooth;
 }
-
+.containhead{
+max-height: 50px!important;
+}
 a,
 img,
 button,
@@ -103,33 +105,6 @@ body {
   box-sizing: border-box;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #1a1a1a;
-}
-
-.navbar .logo {
-  width: 50px;
-}
-
-.navbar nav ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar nav ul li {
-  margin-left: 20px;
-}
-
-.navbar nav ul li a {
-  text-decoration: none;
-  color: white;
-}
 
 .auth-buttons {
   display: flex;
@@ -329,6 +304,7 @@ table tbody tr:hover {
   background-size: contain;
   background-position: top right;
   background-repeat: no-repeat;
+  
 }
 
 .footer-top {
@@ -603,9 +579,7 @@ body.nav-active {
   font-size: var(--title-sm);
 }
 
-.social-list {
-  display: flex;
-}
+
 
 .section {
   padding-block: var(--section-padding);
@@ -710,10 +684,8 @@ body.nav-active {
   top: 100%;
   left: 0;
   background-color: #fff;
-  /* White background for dropdown */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  /* Adjust border-radius as needed */
   padding: 0;
   list-style: none;
   z-index: 1000;
@@ -725,7 +697,6 @@ body.nav-active {
 
 .dropdown-item a {
   color: #2c3e50;
-  /* Dark blue text for dropdown */
   text-decoration: none;
   display: block;
 }
@@ -754,20 +725,17 @@ body.nav-active {
   animation: headerActive 0.5s ease forwards;
 }
 
-/* Dropdown menu styles */
 .navbar-item.dropdown {
   position: relative;
 }
 
 .navbar-item.dropdown a.dropbtn {
   color: white;
-  /* Ensure Services link is white */
   padding: 10px;
   text-decoration: none;
   display: block;
 }
 
-/* Make sure dropdown links are styled properly */
 .navbar-item.dropdown .dropdown-menu {
   display: none;
   position: absolute;
@@ -782,13 +750,14 @@ body.nav-active {
 }
 
 .navbar-item.dropdown .dropdown-item {
-  padding: 8px 16px;
+  padding: 6px 20px;
 }
 
 .navbar-item.dropdown .dropdown-item a {
   color: #2c3e50;
   text-decoration: none;
   display: block;
+  font-size: 14px;
 }
 
 .navbar-item.dropdown .dropdown-item a:hover {
@@ -796,7 +765,6 @@ body.nav-active {
   color: #fff;
 }
 
-/* Display the dropdown menu on hover */
 .navbar-item.dropdown:hover .dropdown-menu {
   display: block;
 }
@@ -824,32 +792,18 @@ body.nav-active {
   font-size: 4rem;
 }
 
-.navbar,
-.overlay {
+.navbar {
   position: fixed;
   top: 0;
   width: 100%;
   height: 100vh;
 }
 
-.navbar {
-  right: -300px;
-  max-width: 300px;
-  background-color: var(--rich-black-fogra-29);
-  z-index: 3;
-  transition: 0.25s var(--cubic-in);
-  visibility: hidden;
-}
 
-.navbar.active {
-  transform: translateX(-300px);
-  visibility: visible;
-  transition: 0.5s var(--cubic-out);
-}
 
 .navbar-top {
   position: relative;
-  padding-inline: 25px;
+  padding-inline: 10px;
   padding-block: 55px 100px;
 }
 
@@ -876,20 +830,6 @@ body.nav-active {
   padding: 10px 24px;
 }
 
-
-.overlay {
-  right: -100%;
-  background-color: var(--black);
-  opacity: 0.3;
-  visibility: hidden;
-  transition: var(--transition-2);
-  z-index: 2;
-}
-
-.overlay.active {
-  transform: translateX(-100%);
-  visibility: visible;
-}
 
 
 
@@ -1041,15 +981,17 @@ body.nav-active {
 
   .container {
     max-width: 1200px;
+    
+    
   }
+  
 
 
   .header {
     padding-block: 24px;
   }
-
+  
   .nav-open-btn,
-  .overlay,
   .navbar-top,
   .navbar .social-list {
     display: none;
@@ -1087,11 +1029,8 @@ body.nav-active {
     grid-template-columns: 0.8fr 1fr;
     gap: 96px;
   }
-
-
-
-
 }
+
 .flashes {
   position: fixed;
   top: 0;
