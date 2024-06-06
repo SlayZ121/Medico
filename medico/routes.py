@@ -15,7 +15,7 @@ app.secret_key = 'your_secret_key'  # Add your secret key here
 otp = randint(1000, 9999)
 
 def send_otp(email):
-    sender_email = 'slayz9168@gmail.com'
+    sender_email = 'medicohealthorg@gmail.com'
     receiver_email = email
     password = mailkey
 
