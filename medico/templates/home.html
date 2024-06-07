@@ -51,12 +51,12 @@
             <a href="{{url_for('home_page')}}" class="navbar-link title-md">Home</a>
           </li>
           <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">About</a>
+            <a href="#about" class="navbar-link title-md">About</a>
           </li>
           <li class="navbar-item dropdown">
             <a href="#services" class="dropbtn">Services</a>
             <ul class="dropdown-menu">
-              <li class="dropdown-item"><a href="#appointments">Appointments</a></li>
+              <li class="dropdown-item"><a href="{{ url_for('appointment_page') }}">Appointments</a></li>
               <li class="dropdown-item"><a href="#scheduler">Scheduler</a></li>
               <li class="dropdown-item"><a href="{{ url_for('bmi_page') }}">BMI Calculator</a></li>
               <li class="dropdown-item"><a href="#dietary">Dietary Services</a></li>
@@ -105,7 +105,7 @@
 
   <main>
     <article>
-      <section class="section hero tochange" id="tochange" style="background-image: url('{{ url_for('static', filename='images/hero-bg.png') }}')" aria-label="home">
+      <section class="section hero tochange" id="tochange"  aria-label="home">
         <div class="container">
           <div class="hero-content">
             <p class="hero-subtitle has-before" data-reveal="left">Welcome To Medico</p>
@@ -190,7 +190,7 @@
     
       </div>
     </section>
-       <footer tabindex="-1" id="footer" class="footer" style="background-image: url('{{ url_for('static', filename='images/footer-bg.png') }}')">
+       <footer tabindex="-1" id="footer" class="footer" >
 
         <div class="container">
       
@@ -240,40 +240,11 @@
       
             </div>
       
-            <div class="footer-list" data-reveal="bottom">
-      
-              <p class="headline-sm footer-list-title">About Us</p>
-      
-              
-      
-              <address class="address">
-                
-      
-                <span class="text">
-                  ABV-IIITM Gwalior<br>
-                  A-BLOCK
-                </span>
-              </address>
-      
-            </div>
+            
       
             
       
-            <div class="footer-list" data-reveal="bottom">
-      
-              <p class="headline-sm footer-list-title">Subscribe</p>
-      
-              <form action="" class="footer-form">
-                <input tabindex="-1" type="email" name="email" placeholder="Email" class="input-field title-lg">
-      
-                <button type="submit" class="btn has-before title-md">Subscribe</button>
-              </form>
-      
-              <p class="text">
-                Get the latest updates via email. Any time you may unsubscribe
-              </p>
-      
-            </div>
+            
       
           </div>
       

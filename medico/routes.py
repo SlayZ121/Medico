@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from random import randint
 from .mailkey import mailkey
-from medico.models import User
+from medico.models import User, Appointment, Doctor
 from medico import db
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -49,6 +49,35 @@ def otp_page():
 @login_required
 def bmi_page():
     return render_template('bmi.html')
+
+@app.route('/appointment', methods=['GET', 'POST'])
+@login_required
+def appointment_page():
+    if request.method == 'POST':
+        name = request.form['name']
+        phone = request.form['phone']
+        email = request.form['email']
+        date = request.form['date']
+        time = request.form['time']
+        doctor_id = request.form['doctor_id']
+        
+        appointment = Appointment(
+            name=name,
+            phone=phone,
+            email=email,
+            date=date,
+            time=time,
+            doctor_id=doctor_id,
+            user_id=current_user.id
+        )
+        
+        db.session.add(appointment)
+        db.session.commit()
+        
+        flash('Appointment booked successfully!', 'success')
+        return redirect(url_for('home_page'))
+
+    return render_template('appointment.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page():

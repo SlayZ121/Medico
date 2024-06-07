@@ -6,7 +6,7 @@
 
 body {
     font-family: "Inter", Arial, Helvetica, sans-serif;
-    background: url('assets/images/footer-bg.png') no-repeat center center fixed;
+    background: url('../images/footer-bg.png') no-repeat center center fixed;
     background-size: cover;
     background-color: #005761;
     color: #005761;

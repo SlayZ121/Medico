@@ -75,6 +75,16 @@ html {
 
   scroll-behavior: smooth;
 }
+.footer {
+  background-image: url('../images/footer-bg.png');
+}
+
+.tochange{
+ 
+    background-image: url('../images/hero-bg.png');
+
+
+}
 .containhead{
 max-height: 50px!important;
 
