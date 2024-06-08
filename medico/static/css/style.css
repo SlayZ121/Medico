@@ -314,8 +314,23 @@ table tbody tr:hover {
 }
 
 /*FOOTER*/
+.contact-list::after {
+  content: none;
+  /* or simply remove this entire rule if not needed */
+}
+
+/* Ensure no borders are applied to elements */
+.footer-brand,
+.contact-list,
+.contact-item {
+  border: none;
+  /* Ensure no unintended borders */
+  box-shadow: none;
+  /* Ensure no unintended box shadows */
+}
+
+/*FOOTER*/
 .footer {
-  
   background-color: var(--midnight-green);
   color: var(--white);
   background-size: contain;
@@ -340,7 +355,6 @@ table tbody tr:hover {
 }
 
 .contact-item {
-  
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -409,32 +423,19 @@ table tbody tr:hover {
 }
 
 .footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-block: 32px;
   border-block-start: 1px solid var(--white_a20);
 }
 
-.footer-bottom .social-list {
-  justify-content: flex-start;
-  gap: 8px;
-  margin-block-start: 16px;
-}
-
-.footer-bottom .social-link {
-  font-size: 1.4rem;
-  padding: 12px;
-  background-color: var(--white_a10);
-  border-radius: var(--radius-circle);
-  transition: var(--transition-1);
-}
-
-.footer-bottom .social-link:is(:hover, :focus-visible) {
-  background-color: var(--verdigris);
-}
 @media (min-width: 1200px) {
   .contact-list {
     justify-content: space-between;
   }
 }
+
 @media (min-width: 768px) {
   .contact-list {
     display: flex;
@@ -443,48 +444,42 @@ table tbody tr:hover {
     gap: 24px;
   }
 }
+
 @media (min-width: 1200px) {
   .footer {
     background-size: auto;
   }
 }
-    .footer {
-      background-size: auto;
-    }
-  
-    .footer-top {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  
-    .footer-brand {
-      grid-column: 1 / 5;
-      padding: 28px 56px;
-      display: grid;
-      grid-template-columns: 0.3fr 1fr;
-      align-items: center;
-    }
-  
-    .footer .logo {
-      margin-block-end: 0;
-    }
-  
-    .contact-list {
-      justify-content: space-between;
-    }
-  
-    .contact-list::after {
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 100%;
-      background-color: var(--white_a20);
-    }
-  
-    .contact-item {
-      margin-block-start: 0;
-    }
-  
-    
+
+.footer {
+  background-size: auto;
+}
+
+.footer-top {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.footer-brand {
+  grid-column: 1 / 5;
+  padding: 28px 56px;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  align-items: center;
+}
+
+.footer .logo {
+  margin-block-end: 0;
+}
+
+.contact-list {
+  justify-content: space-between;
+  position: relative;
+}
+
+.contact-item {
+  margin-block-start: 0;
+}
+
 /*footer end*/
 
 .text-container {
