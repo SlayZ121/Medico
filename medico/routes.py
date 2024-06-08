@@ -9,6 +9,7 @@ from .mailkey import mailkey
 from medico.models import User, Appointment, Doctor
 from medico import db
 from flask_login import login_user, logout_user, login_required, current_user
+from datetime import datetime, date, time
 
 app.secret_key = 'your_secret_key'  # Add your secret key here
 
@@ -57,21 +58,30 @@ def appointment_page():
         name = request.form['name']
         phone = request.form['phone']
         email = request.form['email']
-        date = request.form['date']
-        time = request.form['time']
+        date_str = request.form['date']
+        time_str = request.form['time']
         doctor_id = request.form['doctor_id']
-        
-        appointment = Appointment(
+
+        # Convert date and time from string to date and time objects
+        appointment_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+        appointment_time = datetime.strptime(time_str, '%H:%M').time()
+
+        # Assume you have a way to get the user_id of the logged-in user
+        user_id = current_user.id
+
+        # Create a new appointment
+        new_appointment = Appointment(
             name=name,
             phone=phone,
             email=email,
-            date=date,
-            time=time,
+            date=appointment_date,
+            time=appointment_time,
             doctor_id=doctor_id,
-            user_id=current_user.id
+            user_id=user_id
         )
-        
-        db.session.add(appointment)
+
+        # Add to the database
+        db.session.add(new_appointment)
         db.session.commit()
         
         flash('Appointment booked successfully!', 'success')
