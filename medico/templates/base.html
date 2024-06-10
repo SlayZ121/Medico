@@ -3,100 +3,259 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-  <title>Medico</title>
-  <meta name="title" content="Medico">
-  <meta name="description" content="This is a medical HTML template made by codewithsadee">
+    .header {
+      background-color: hsl(186, 100%, 19%);
+      padding: 10px 0;
+    }
 
-  <link rel="shortcut icon" href="{{ url_for('static', filename='images/medico.png') }}" type="image/svg+xml">
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    .logo img {
+      width: 136px;
+      height: 46px;
+      display: block;
+      height: auto;
+    }
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-  <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero-banner.png') }}">
-  <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero-bg.png') }}">
+    .navbar {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navbar-item {
+      margin-right: 20px;
+    }
+
+    .navbar-link {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+
+    .navbar-link:hover {
+      background-color: hsl(186, 100%, 25%);
+      color: white;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+
+    .dropbtn:hover {
+      background-color: hsl(186, 100%, 25%);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: hsl(186, 100%, 25%);
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-radius: 4px;
+    }
+
+    .dropdown-item a {
+      color: white;
+
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .dropdown-item a:hover {
+      background-color: hsl(186, 100%, 30%);
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .btn {
+      background-color: white;
+      color: hsl(186, 100%, 19%);
+      border: none;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 5px;
+      margin-left: 10px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: hsl(186, 100%, 25%);
+      color: white;
+    }
+
+    .nav-open-btn {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: hsl(186, 100%, 19%);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+      }
+
+      .navbar-list.active {
+        display: flex;
+      }
+
+      .navbar-item {
+        margin: 10px 0;
+        text-align: center;
+      }
+
+      .nav-open-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .nav-close-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+
+      .navbar-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .containhead {
+        max-height: 30px !important;
+      }
+
+      .navbar-top .logo {
+        margin-left: 15px;
+      }
+
+      .navbar-list.active .nav-close-btn {
+        display: block;
+      }
+
+      .btn {
+        margin: 10px auto;
+        display: block;
+        width: fit-content;
+      }
+
+    }
+  </style>
 </head>
 
-<body id="top">
-
-  
-
+<body>
   <header class="header" data-header>
-    <div class="container">
-
+    <div class="container containhead" id="containhead" style="max-height: 50px !important;">
       <a href="#" class="logo">
-        <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Doclab home">
+        <img src="assets\images\Medico logo.png" alt="Medico home">
       </a>
-
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
-          <a href="#" class="logo">
-            <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Doclab home">
-          </a>
 
-          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
-            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
-          </button>
+
         </div>
-
         <ul class="navbar-list">
           <li class="navbar-item">
-            <a href="{{url_for('home_page')}}" class="navbar-link title-md">Home</a>
+            <a href="#" class="navbar-link title-md">Home</a>
           </li>
           <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">About</a>
+            <a href="#about" class="navbar-link title-md">About</a>
+          </li>
+          <li class="navbar-item dropdown">
+            <a href="#services" class="dropbtn">Services</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="#appointments">Appointments</a></li>
+              <li class="dropdown-item"><a href="#scheduler">Scheduler</a></li>
+              <li class="dropdown-item"><a href="#bmi">BMI Calculator</a></li>
+              <li class="dropdown-item"><a href="#dietary">Dietary Services</a></li>
+              <li class="dropdown-item"><a href="#gynecology">Gynecology Services</a></li>
+              <li class="dropdown-item"><a href="#complaint">Complaint Services</a></li>
+            </ul>
           </li>
           <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">Services</a>
-          </li>
-          <li class="navbar-item">
-            <a href="#" class="navbar-link title-md">Contact</a>
-          </li>
-        </ul>
-
-        <ul class="social-list">
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-pinterest"></ion-icon>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-youtube"></ion-icon>
-            </a>
+            <a href="#footer" class="navbar-link title-md">Contact</a>
           </li>
         </ul>
       </nav>
-
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-        <ion-icon name="menu-outline"></ion-icon>
-      </button>
-
-      <a href="{{ url_for('login_page') }}" class="btn has-before title-md">Log In</a>
-      <a href="{{ url_for('signup_page') }}" class="btn has-before title-md">Sign Up</a>
-
-      <div class="overlay" data-nav-toggler data-overlay></div>
+        <a href="login.html" class="btn has-before title-md">Log In</a>
+        <a href="signup.html" class="btn has-before title-md">Sign Up</a>
     </div>
   </header>
-  </body>
-  </html>
+
+  <script>
+    const navToggler = document.querySelectorAll('[data-nav-toggler]');
+    const navbarList = document.querySelector('.navbar-list');
+
+    navToggler.forEach(toggler => {
+      toggler.addEventListener('click', () => {
+        navbarList.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+
+</html>
