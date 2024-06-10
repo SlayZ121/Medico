@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from random import randint
 from .mailkey import mailkey
-from medico.models import User, Appointment, Doctor
+from medico.models import User, Appointment
 from medico import db
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import datetime, date, time
@@ -42,9 +42,15 @@ def send_otp(email):
 def home_page():
     return render_template('home.html')
 
-@app.route('/otp')
-def otp_page():
-    return render_template('otp.html')
+
+@app.route('/my-appointments')
+@login_required
+def my_appointments():
+    appointments = Appointment.query.filter_by(user_id=current_user.id).all()
+
+    
+    return render_template('appointment1.html', appointments=appointments)
+
 
 @app.route('/bmi')
 @login_required

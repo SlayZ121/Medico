@@ -14,4 +14,4 @@ login_manager.login_view="login_page"
 login_manager.login_message_category="info"
 
 from medico import routes
-from medico.models import User, Appointment, Doctor
+from medico.models import User, Appointment
