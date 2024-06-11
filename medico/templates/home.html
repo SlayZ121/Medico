@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,10 +18,12 @@
 
   <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero-banner.png') }}">
   <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero-bg.png') }}">
+
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 
 <body id="top">
-  
 
   <div class="preloader" data-preloader>
     <div class="circle"></div>
@@ -30,7 +31,6 @@
 
   <header class="header" data-header>
     <div class="container containhead" id="containhead">
-
       <a href="#" class="logo">
         <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Medico home">
       </a>
@@ -58,54 +58,52 @@
             <ul class="dropdown-menu">
               <li class="dropdown-item"><a href="{{ url_for('my_appointments') }}">Appointments</a></li>
               <li class="dropdown-item"><a href="#scheduler">Scheduler</a></li>
-              <li class="dropdown-item"><a href="{{ url_for('bmi_page') }}">BMI Calculator</a></li>
-              <li class="dropdown-item"><a href="#dietary">Dietary Services</a></li>
-              <li class="dropdown-item"><a href="#gynecology">Gynecology Services</a></li>
-              <li class="dropdown-item"><a href="#complaint">Complaint Services</a></li>
+              <li class="dropdown-item"><a href="{{ url_for('bmi_page') }}">BMI</a></li>
+              <li class="dropdown-item"><a href="#dietary">Dietometer</a></li>
+              {% if current_user.is_authenticated and current_user.role == 'medical_staff'%}
+              <li class="dropdown-item"><a href="#">Medical Records</a></li>
+              <li class="dropdown-item"><a href="#dietary">Pill store</a></li>
+              {% endif %}
+              <li class="dropdown-item"><a href="#complaint">Complaint</a></li>
             </ul>
           </li>
           <li class="navbar-item">
             <a href="#footer" class="navbar-link title-md">Contact</a>
           </li>
-
         </ul>
       </nav>
 
-      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-        
-      </button>
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler></button>
 
       {% if current_user.is_authenticated %}
        <a href="{{ url_for('logout_page') }}" class="btn has-before title-md">Logout</a>
       {% else %}
-
       <a href="{{ url_for('login_page') }}" class="btn has-before title-md">Log In</a>
       <a href="{{ url_for('signup_page') }}" class="btn has-before title-md">Sign Up</a>
       {% endif %}
 
       <div class="overlay" data-nav-toggler data-overlay></div>
     </div>
-
-
   </header>
+
   {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flashes">
-                {% for category, message in messages %}
-                    <div class="flash flash-{{ category }}">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
+    {% if messages %}
+        <div class="flashes">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+  {% endwith %}
 
   <main>
     <article>
-      <section class="section hero tochange" id="tochange"  aria-label="home">
+      <section class="section hero tochange" id="tochange" aria-label="home">
         <div class="container">
           <div class="hero-content">
             <p class="hero-subtitle has-before" data-reveal="left">Welcome To Medico</p>
@@ -120,76 +118,47 @@
           </figure>
         </div>
       </section>
-      <section id= "about" class="section about" aria-labelledby="about-label">
-        
+
+      <section id="about" class="section about" aria-labelledby="about-label">
         <div class="video-container">
           <video autoplay muted loop id="myVideo">
             <source src="{{ url_for('static', filename='images/health.mp4') }}" type="video/mp4">
           </video>
         </div>
         <div class="container">
-    
-        <div class="about-content">
-    
-        <h1></h1>
-        <h1></h1>
-          <h2 class="headline-md" data-reveal="left">Welcome to the Health Centre <br> at ABV-IIITM Gwalior</h2>
-          <p class="section-text" data-reveal="left">
-            The Health Centre is committed to promoting the health and wellness of the campus community by providing prevention,
-            education, and treatment services. <br>
-            Health Centre is located in A block of ABV-IIITM Gwalior.
-          </p>
-    
-          
-        
+          <div class="about-content">
+            <h1></h1>
+            <h1></h1>
+            <h2 class="headline-md" data-reveal="left">Welcome to the Health Centre <br> at ABV-IIITM Gwalior</h2>
+            <p class="section-text" data-reveal="left">
+              The Health Centre is committed to promoting the health and wellness of the campus community by providing prevention,
+              education, and treatment services. <br>
+              Health Centre is located in A block of ABV-IIITM Gwalior.
+            </p>
 
-          <ul class="tab-list" data-reveal="left">
-    
-            <li>
-              <button class="tab-btn active">Vision</button>
-            </li>
-    
-            <li>
-              <button class="tab-btn">Mission</button>
-            </li>
-    
-            <li>
-              <button class="tab-btn">Strategy</button>
-            </li>
-    
-          </ul>
-    
-    
-          <div class="wrapper">
-    
-            <ul class="about-list">
-    
-              <li class="about-item" data-reveal="left">
-    
-                <span class="span"><strong>Promote Health:</strong> Encourage a healthy lifestyle through various wellness programs.</span>
-              </li>
-    
-              <li class="about-item" data-reveal="left">
-    
-                <span class="span"><strong>Prevent Illness:</strong> Provide preventive care and health education to reduce the risk of illnesses.</span>
-              </li>
-    
-              <li class="about-item" data-reveal="left">
-    
-                <span class="span"><strong>Treat Patients:</strong> Offer quality medical treatment and support to those in need.</span>
-              </li>
-    
+            <ul class="tab-list" data-reveal="left">
+              <li><button class="tab-btn active">Vision</button></li>
+              <li><button class="tab-btn">Mission</button></li>
+              <li><button class="tab-btn">Strategy</button></li>
             </ul>
-    
+
+            <div class="wrapper">
+              <ul class="about-list">
+                <li class="about-item" data-reveal="left">
+                  <span class="span"><strong>Promote Health:</strong> Encourage a healthy lifestyle through various wellness programs.</span>
+                </li>
+                <li class="about-item" data-reveal="left">
+                  <span class="span"><strong>Prevent Illness:</strong> Provide preventive care and health education to reduce the risk of illnesses.</span>
+                </li>
+                <li class="about-item" data-reveal="left">
+                  <span class="span"><strong>Treat Patients:</strong> Offer quality medical treatment and support to those in need.</span>
+                </li>
+              </ul>
+            </div>
           </div>
-    
         </div>
-        </div>
-    
-        
-    
-      </div>
-    </section>
+      </section>
+
       <footer id="footer" class="footer">
         <div class="container" style="width: 100%; text-align: center;">
           <div class="section footer-top" style="width: 100%; display: flex; justify-content: center;">
@@ -219,21 +188,101 @@
           </div>
         </div>
       </footer>
+    </article>
+  </main>
+  <div class="chat-bar-open" id="chat-open">
+    <button
+      id="chat-open-button"
+      type="button"
+      class="collapsible close"
+      onclick="chatOpen()"
+    >
+      <img src="{{ url_for('static', filename='images/Sparrow Bird.png') }}" alt="Sparrow Bird image" />
+    </button>
+  </div>
 
-   
+  <!-- chat close -->
+  <div class="chat-bar-close" id="chat-close">
+    <button
+      id="chat-close-button"
+      type="button"
+      class="collapsible close"
+      onclick="chatClose()"
+    >
+      <i class="material-icons-outlined"> close </i>
+    </button>
+  </div>
 
-      <script>
-        window.addEventListener("load", function() {
-   
-    document.getElementById("tochange").focus();
-});
-    </script>
-      <script src="{{ url_for('static', filename='js/script.js') }}">
-      </script>
-      
-    
-    
+  <!-- chat-window 1 -->
+  <div class="chat-window" id="chat-window1">
+    <div class="hi-there">
+      <p class="p1">Hi There</p>
+      <br />
+      <p class="p2">Hello Ask Us Anythig,Share Your<br />Feedback.</p>
+    </div>
+    <div class="start-conversation">
+      <h1>Start a Conversation</h1>
+      <br />
+      <p>The team typically replies in few minutes.</p>
+      <button
+        class="new-conversation"
+        type="button"
+        onclick="openConversation()"
+      >
+        <span>New Conversation</span
+        ><i class="material-icons-outlined"> send </i>
+      </button>
+    </div>
+  </div>
+
+  <!-- chat chat-window 2 -->
+  <div class="chat-window2" id="chat-window2">
+    <div class="message-box" id="messageBox">
+      <div class="hi-there">
+        <p class="p1">Hi There</p>
+        <br />
+        <p class="p2">The team typically replies in few minutes.</p>
+      </div>
+      <div class="first-chat">
+        <p>Is there any offlines versions available for Maxeon Player?</p>
+        <div class="arrow"></div>
+      </div>
+      <div class="second-chat">
+        <div class="circle"></div>
+        <p>Currently we don't have but we will launch soon.</p>
+        <div class="arrow"></div>
+      </div>
+    </div>
+    <div class="input-box">
+      <div class="surveysparrow">
+        <img src="{{ url_for('static', filename='images/sparrow favicon.png') }}" />
+        <p>we run on surveysparrow</p>
+      </div>
+      <div class="write-reply">
+        <input
+          class="inputText"
+          type="text"
+          id="textInput"
+          placeholder="Write a reply..."
+        />
+      </div>
+      <div class="send-button">
+        <button
+          type="submit"
+          class="send-message"
+          id="send"
+          onclick="userResponse()"
+        >
+          <i class="material-icons-outlined"> send </i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"></script>
 </body>
-
 </html>
 
