@@ -1,2 +1,4 @@
 /medico/mailkey.py
 /medico/config.py
+/medico/__pycache__/
+__pycache__/
