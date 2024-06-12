@@ -7,14 +7,13 @@
     <title>Doctor Appointment Form</title>
     <link rel="shortcut icon" href="assets/images/medico.png" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/appointment0.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/appointment0.css') }}">
 
 
 
 </head>
 
-<body
-    style="background: url('assets/images/footer-bg.png') no-repeat center center fixed; background-size: cover; background-color: #005761;">
+<body>
 
     <div class="container">
         <h3 class="heading">How to Book an Online Appointment!</h3>
@@ -54,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-4"><a href="#"
+        <div class="text-center mt-4"><a href="{{url_for('appointment_page')}}"
                 class="btn-readmore">Book an Appointment</a></div>
     </div>
     <div class="container">
@@ -129,7 +128,7 @@
 
 
 
-        <div class="text-center mt-4"><a href="#"
+        <div class="text-center mt-4"><a href="{{url_for('my_appointments')}}"
                 class="btn-readmore">Upcoming Appointments</a></div>
     </div>
 

@@ -121,6 +121,10 @@ def my_appointments():
 @login_required
 def bmi_page():
     return render_template('bmi.html')
+@app.route('/aptcheck')
+@login_required
+def aptcheck_page():
+    return render_template('appointment0.html')
 
 @app.route('/appointment', methods=['GET', 'POST'])
 @login_required
