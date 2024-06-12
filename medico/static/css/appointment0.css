@@ -1,0 +1,123 @@
+/* General Styles */
+body {
+    background: url('assets/images/footer-bg.png') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #005761;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Headings */
+.heading,
+h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3.heading {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+/* Cards */
+.card {
+    background-color: #ffffff;
+    color: #333333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h4 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.card-body h4 i {
+    margin-right: 10px;
+}
+
+.card-body .info p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Button */
+.btn-readmore {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #005761;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.btn-readmore:hover {
+    background-color: #ffffff;
+    color: #005761;
+    border: 2px solid #005761;
+}
+
+/* Grid Layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    /* Centers the cards */
+}
+
+.col {
+    flex: 1;
+    min-width: 250px;
+    max-width: 30%;
+}
+
+@media (max-width: 768px) {
+    .col {
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col {
+        max-width: 100%;
+    }
+}
+
+/* Centering the button */
+.text-center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.mt-4 {
+    margin-top: 40px;
+}

@@ -1,15 +1,11 @@
-        h1 {
-            color: #ffffff;
-            font-family: arial, sans-serif;
-            font-size: 50px;
-            font-weight: bold;
-            margin-top: 0px;
-            margin-bottom: 1px;
-            text-align: center;
-        }
-        body{
-            background: url('../images/footer-bg.png') no-repeat center center fixed; background-size: cover; background-color: #005761;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('assets/images/footer-bg.png') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #005761;
+}
 
 h1 {
     color: #ffffff;
@@ -22,43 +18,74 @@ h1 {
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    justify-content: space-between;
 }
 
-.button-container {
-    margin-top: 0;
+.button {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding-block: 0.15rem;
+    padding-inline: 0.45rem;
+    background-color: rgb(0 107 179);
+    border-radius: 8888px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    gap: 8px;
+    font-weight: bold;
+    border: 2px solid #ffffff4d;
+    outline: none;
+    overflow: hidden;
+    font-size: 15px;
 }
 
-button {
-    border: none;
-    color: #fff;
-    background-image: linear-gradient(30deg, #005761, #7eeffe);
-    border-radius: 20px;
-    background-size: 100% auto;
-    font-family: inherit;
-    font-size: 17px;
-    padding: 0.6em 1.5em;
+.icon {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease-in-out;
 }
 
-button:hover {
-    background-position: right center;
-    background-size: 200% auto;
-    animation: pulse512 1.5s infinite;
+.button:hover {
+    transform: scale(1.05);
+    border-color: #fff9;
 }
 
-@keyframes pulse512 {
+.button:hover .icon {
+    transform: translate(4px);
+}
+
+.button:hover::before {
+    animation: shine 1.5s ease-out infinite;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(120deg,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0) 70%);
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+}
+
+@keyframes shine {
     0% {
-        box-shadow: 0 0 0 0 #05bada66;
+        left: -100px;
     }
 
-    70% {
-        box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+    60% {
+        left: 100%;
     }
 
-    100% {
-        box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+    to {
+        left: 100%;
     }
 }
 
@@ -98,8 +125,8 @@ button:hover {
 }
 
 .icon {
-    width: 64px;
-    height: 64px;
+    width: 40px;
+    height: 40px;
     fill: #ffffff;
     margin-bottom: 10px;
     transition: fill 0.64s cubic-bezier(0.23, 1, 0.32, 1);
