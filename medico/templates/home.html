@@ -190,94 +190,58 @@
       </footer>
     </article>
   </main>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
   <div class="chat-bar-open" id="chat-open">
-    <button
-      id="chat-open-button"
-      type="button"
-      class="collapsible close"
-      onclick="chatOpen()"
-    >
-      <img src="{{ url_for('static', filename='images/Sparrow Bird.png') }}" alt="Sparrow Bird image" />
+    <button id="chat-open-button" type="button" class="collapsible close" onclick="chatOpen()">
+        <img src="{{ url_for('static', filename='images/Sparrow Bird.png') }}" alt="Sparrow Bird image" />
     </button>
-  </div>
+</div>
 
-  <!-- chat close -->
-  <div class="chat-bar-close" id="chat-close">
-    <button
-      id="chat-close-button"
-      type="button"
-      class="collapsible close"
-      onclick="chatClose()"
-    >
-      <i class="material-icons-outlined"> close </i>
+<div class="chat-bar-close" id="chat-close">
+    <button id="chat-close-button" type="button" class="collapsible close" onclick="chatClose()">
+        <i class="material-icons-outlined"> close </i>
     </button>
-  </div>
+</div>
 
-  <!-- chat-window 1 -->
-  <div class="chat-window" id="chat-window1">
+<div class="chat-window" id="chat-window1">
     <div class="hi-there">
-      <p class="p1">Hi There</p>
-      <br />
-      <p class="p2">Hello Ask Us Anythig,Share Your<br />Feedback.</p>
+        <p class="p1">Hi There</p>
+        <p class="p2">Hello Ask Us Anything, Share Your Feedback.</p>
     </div>
     <div class="start-conversation">
-      <h1>Start a Conversation</h1>
-      <br />
-      <p>The team typically replies in few minutes.</p>
-      <button
-        class="new-conversation"
-        type="button"
-        onclick="openConversation()"
-      >
-        <span>New Conversation</span
-        ><i class="material-icons-outlined"> send </i>
-      </button>
+        <h1>Start a Conversation</h1>
+        <p>The team typically replies in a few minutes.</p>
+        <button class="new-conversation" type="button" onclick="openConversation()">
+            <span>New Conversation</span>
+            <i class="material-icons-outlined"> send </i>
+        </button>
     </div>
-  </div>
+</div>
 
-  <!-- chat chat-window 2 -->
-  <div class="chat-window2" id="chat-window2">
+
+<div class="chat-window2" id="chat-window2">
     <div class="message-box" id="messageBox">
-      <div class="hi-there">
-        <p class="p1">Hi There</p>
-        <br />
-        <p class="p2">The team typically replies in few minutes.</p>
-      </div>
-      <div class="first-chat">
-        <p>Is there any offlines versions available for Maxeon Player?</p>
-        <div class="arrow"></div>
-      </div>
-      <div class="second-chat">
-        <div class="circle"></div>
-        <p>Currently we don't have but we will launch soon.</p>
-        <div class="arrow"></div>
-      </div>
+        <div class="hi-there">
+            
+            <p class="p2">Medico Bot</p>
+        </div>
     </div>
     <div class="input-box">
-      <div class="surveysparrow">
-        <img src="{{ url_for('static', filename='images/sparrow favicon.png') }}" />
-        <p>we run on surveysparrow</p>
-      </div>
-      <div class="write-reply">
-        <input
-          class="inputText"
-          type="text"
-          id="textInput"
-          placeholder="Write a reply..."
-        />
-      </div>
-      <div class="send-button">
-        <button
-          type="submit"
-          class="send-message"
-          id="send"
-          onclick="userResponse()"
-        >
-          <i class="material-icons-outlined"> send </i>
-        </button>
-      </div>
+        <div class="surveysparrow">
+            <img src="{{ url_for('static', filename='images/sparrow favicon.png') }}" />
+            <p>we run on surveysparrow</p>
+        </div>
+        <div class="write-reply">
+            <input class="inputText" type="text" id="textInput" placeholder="Write a reply..." />
+        </div>
+        <div class="send-button">
+            <button type="submit" class="send-message" id="send" onclick="userResponse()">
+                <i class="material-icons-outlined"> send </i>
+            </button>
+        </div>
     </div>
-  </div>
+</div>
+  
 
   <!-- Scripts -->
   <script src="{{ url_for('static', filename='js/chat.js') }}"></script>

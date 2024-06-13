@@ -95,17 +95,16 @@ def send_otp(email):
 def home_page():
     return render_template('home.html')
 
-@bp.route('/chatbot', methods=['POST'])
-def chatbot():
-    if request.method == 'POST':
-        data = request.json
-        message = data.get("message")
-        response = run_chat(message)
-        return jsonify({'message': message, 'response': response})
+@app.route('/index')
+def home():
+    return render_template('index.html')
 
-@bp.route('/index')
-def index():
-    return render_template('chatbot.html')
+@app.route('/chatbot', methods=['POST'])
+def chatbot():
+    data = request.json
+    message = data.get("message")
+    response = run_chat(message)
+    return jsonify({'message': message, 'response': response})
 
 
 @app.route('/my-appointments')
