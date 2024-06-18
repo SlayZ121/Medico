@@ -3,111 +3,65 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medico Complaint Form</title>
-<style>
-    body{
-background: url("{{ url_for('static', filename='images/footer-bg.png') }}") no-repeat center center fixed;
- background-size: cover; 
- background-color: #005761;
-    }
-</style>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/complaint.css') }}">
+    <title>Doctor Appointment Form</title>
+    <link rel="shortcut icon" href="static\images\medico.png" type="image/svg+xml">
 
+    <link rel="stylesheet" href="static/css/appointment.css">
 </head>
 
 
-<body>
-
-    <div class="mainform">
-        <form>
-
-
-            <!--Header-->
-
-            <div class="header">
-                <h1><b>Complaint Form</b></h1>
-                <p>Please send us details about the incident you would like to report. Our Complaint Center will analyze
-                    your complaint and take the appropriate measures
-                    in order that the reported situation will not occur at any other time in the future.</p>
-                <hr />
-            </div>
-
-
-            <br><br>
-            <!-- Name-->
-
-            <div class="form-group">
-                <label for="fname"><b>First Name:</b></label>
-                <input type="text" class="form-control" id="fname" placeholder="Enter first name" name="fname">
-            </div>
-
-            <br>
-
-            <div class="form-group">
-                <label for="lname"><b>Last Name:</b></label>
-                <input type="text" class="form-control" id="lname" placeholder="Enter last name" name="lname">
-            </div>
-
-            <br>
-
-            <!-- Phone number-->
-
-            <div class="form-group">
-                <label for="phoneNo"> <b>Phone Number: </b> </label>
-                <input type="text" id="phone" class="form-control" placeholder="Enter Landline Number" name="phoneNo">
-            </div>
-
-
-
-            <br>
-            <!-- Select your Hostel-->
-
-            <label for="Select Your Hostel"><b>Select Your Hostel</b></label>
-            <select id="area" name="area">
-                <option value="----">----</option>
-                <option value="Gangotri Hostel">Gangotri Girls Hostel</option>
-                <option value="Aravalli Boys Hostel (BH-1)">Aravalli Boys Hostel (BH-1)</option>
-                <option value="Nilgiri Boys Hostel (BH-2)">Nilgiri Boys Hostel (BH-2)</option>
-                <option value="Shivalik Boys Hostel (BH-3)">Shivalik Boys Hostel (BH-3)</option>
-                <option value="SriShailam Boys Hostel (IVH)">SriShailam Boys Hostel (IVH)</option>
-                <option value="Satpura Boys Hostel">Satpura Boys Hostel</option>
-            </select>
-
-
-            <br>
-            <div class="input-box">
-                <label for="Category Of Complaint"><b>Category Of Complaint</b></label>
-                <div class="role-dropdown">
-                    <select name="role" id="role" required>
-                        <option value="" disabled selected>Choose the Category of your Complaint</option>
-                        <option value="medical_staff">Medical Services</option>
-                        <option value="students">Website Issues</option>
-                        <option value="students">Hostel Facilities</option>
-                        <option value="students">Others</option>
-
+<body
+    style="background: url('assets/images/footer-bg.png') no-repeat center center fixed; background-size: cover; background-color: #005761;">
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+            <form action="#" method="POST">
+                <div class="formbold-mb-5">
+                    <label for="name" class="formbold-form-label"> Full Name </label>
+                    <input type="text" name="name" id="name" placeholder="Full Name" class="formbold-form-input" />
+                </div>
+                <div class="formbold-mb-5">
+                    <label for="phone" class="formbold-form-label"> Phone Number </label>
+                    <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
+                        class="formbold-form-input" />
+                </div>
+                <div class="formbold-mb-5">
+                    <label for="Select your Hostel" class="formbold-form-label"> Select your Hostel</label>
+                    <select id="area" name="area" class="formbold-form-input">
+                        <option value="----">----</option>
+                        <option value="Gangotri Hostel">Gangotri Girls Hostel</option>
+                        <option value="Aravalli Boys Hostel (BH-1)">Aravalli Boys Hostel (BH-1)</option>
+                        <option value="Nilgiri Boys Hostel (BH-2)">Nilgiri Boys Hostel (BH-2)</option>
+                        <option value="Shivalik Boys Hostel (BH-3)">Shivalik Boys Hostel (BH-3)</option>
+                        <option value="SriShailam Boys Hostel (IVH)">SriShailam Boys Hostel (IVH)</option>
+                        <option value="Satpura Boys Hostel">Satpura Boys Hostel</option>
                     </select>
                 </div>
-            </div>
+                <div class="input-box">
+                    <label for="Category Of Complaint" class="formbold-form-label"> Category Of Complaint</label>
+                    <div class="role-dropdown">
+                        <select name="role" id="role" required class="formbold-form-input">
+                            <option value="" disabled selected placeholder="Choose the Category of your Complaint" </option>
+                            <option value="medical_staff">Medical Services</option>
+                            <option value="students">Website Issues</option>
+                            <option value="students">Hostel Facilities</option>
+                            <option value="students">Others</option>
 
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="subject"><b>Complaint Details:</b></label>
+                    <textarea id="subject" name="subject" class="formbold-form-input"
+                        placeholder="Enter your complaint details" style="height:200px"></textarea>
+                </div>
 
-
-            <br>
-            <!-- Complaint Details-->
-
-            <label for="subject"><b>Complaint Details:</b></label>
-            <textarea id="subject" name="subject" placeholder="Enter your complaint details......."
-                style="height:200px"></textarea>
-
-
-            <!--Submit Button-->
-            <button type="button" class="btn btn-outline-primary">Submit</button>
-
-
-        </form>
+                <div style="margin-top: 3%;">
+                    <button class="formbold-btn">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
-
 </body>
 
 </html>
