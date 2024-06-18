@@ -167,6 +167,65 @@ def appointment_page():
 @app.route('/complaint',methods=['GET','POST'])
 @login_required
 def complaint_page():
+    if request.method == 'POST':
+        name = request.form['name']
+        phone = request.form['phone']
+        hostel = request.form['hostel']
+        category = request.form['category']
+        details = request.form['subject']
+
+        # Create the email content
+        subject = "New Complaint Received"
+        body = f"""
+        <html>
+        <body>
+            <table border="1" cellpadding="10" cellspacing="0">
+                <tr>
+                    <td><strong>Name:</strong></td>
+                    <td>{name}</td>
+                </tr>
+                <tr>
+                    <td><strong>Phone:</strong></td>
+                    <td>{phone}</td>
+                </tr>
+                <tr>
+                    <td><strong>Hostel:</strong></td>
+                    <td>{hostel}</td>
+                </tr>
+                <tr>
+                    <td><strong>Category:</strong></td>
+                    <td>{category}</td>
+                </tr>
+                <tr>
+                    <td><strong>Details:</strong></td>
+                    <td>{details}</td>
+                </tr>
+            </table>
+        </body>
+        </html>
+        """
+
+        sender_email = 'medicohealthorg@gmail.com'
+        receiver_email = 'slayz9168@gmail.com'  # Admin email
+        password = mailkey
+
+        message = MIMEMultipart()
+        message['From'] = sender_email
+        message['To'] = receiver_email
+        message['Subject'] = subject
+
+        message.attach(MIMEText(body, 'html'))
+
+        try:
+            with smtplib.SMTP('smtp.gmail.com', 587) as server:
+                server.starttls()
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, message.as_string())
+            flash('Your complaint has been sent successfully!', 'success')
+        except Exception as e:
+            flash(f'Failed to send complaint. Error: {e}', 'danger')
+
+        return redirect(url_for('home_page'))
     return render_template('complaint.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
