@@ -6,13 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medico Complaint Form</title>
-
+<style>
+    body{
+background: url("{{ url_for('static', filename='images/footer-bg.png') }}") no-repeat center center fixed;
+ background-size: cover; 
+ background-color: #005761;
+    }
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/complaint.css') }}">
 
 </head>
 
 
-<body
-    style="background: url('assets/images/footer-bg.png') no-repeat center center fixed; background-size: cover; background-color: #005761;">
+<body>
 
     <div class="mainform">
         <form>

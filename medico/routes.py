@@ -55,7 +55,7 @@ def run_chat(message):
     convo = model.start_chat(history=[
         {
             "role": "user",
-            "parts": ["You are Medico Bot, a friendly assistant..."]  # Your initial instruction
+            "parts": ["You are Medico Bot, a friendly assistant for the Medico Web Application. that has exciting features like booking appointments, checking schedule, giving complaint, chatbot ofcourse that is yourself, bmi calculator, and a dietary recommender. You assist users with our website. but you dont reply long messages you reply short and sweet and precise"]  # Your initial instruction
         }
     ])
     convo.send_message(message)
@@ -105,6 +105,7 @@ def chatbot():
     message = data.get("message")
     response = run_chat(message)
     return jsonify({'message': message, 'response': response})
+
 
 
 @app.route('/my-appointments')
@@ -162,6 +163,11 @@ def appointment_page():
         return redirect(url_for('home_page'))
 
     return render_template('appointment.html')
+
+@app.route('/complaint',methods=['GET','POST'])
+@login_required
+def complaint_page():
+    return render_template('complaint.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page():
