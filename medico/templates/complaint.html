@@ -5,30 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Appointment Form</title>
-    <link rel="shortcut icon" href="assets\images\medico.png" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/medico.png') }}" type="image/svg+xml">
+    
 
-    <link rel="stylesheet" href="assets/css/appointment.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/appointment.css') }}">
+    <style>
+        body{
+            background: url("{{ url_for('static', filename='images/footer-bg.png') }}") no-repeat center center fixed; 
+        background-size: cover; 
+        
+        background-color: #005761;
+        }
+        html{
+            overflow: hidden;
+        }
+
+    </style>
+
 </head>
 
 
-<body
-    style="background: url('assets/images/footer-bg.png') no-repeat center center fixed; background-size: cover; background-color: #005761;">
+<body>
     <div class="formbold-main-wrapper">
         <div class="formbold-form-wrapper">
-            <form action="#" method="POST">
+            <form action="{{ url_for('complaint_page') }}" method="POST">
                 <div class="formbold-mb-5">
                     <label for="name" class="formbold-form-label"> Full Name </label>
-                    <input type="text" name="name" id="name" placeholder="Full Name" class="formbold-form-input" />
+                    <input required type="text" name="name" id="name" placeholder="Full Name" class="formbold-form-input" />
                 </div>
                 <div class="formbold-mb-5">
                     <label for="phone" class="formbold-form-label"> Phone Number </label>
-                    <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
+                    <input required type="text" name="phone" id="phone" placeholder="Enter your phone number"
                         class="formbold-form-input" />
                 </div>
                 <div class="formbold-mb-5">
                     <label for="Select your Hostel" class="formbold-form-label"> Select your Hostel</label>
-                    <select id="area" name="area" class="formbold-form-input">
-                        <option value="----">----</option>
+                    <select required id="hostel" name="hostel" class="formbold-form-input">
+                        <option value="" disabled selected>Choose One</option>
                         <option value="Gangotri Hostel">Gangotri Girls Hostel</option>
                         <option value="Aravalli Boys Hostel (BH-1)">Aravalli Boys Hostel (BH-1)</option>
                         <option value="Nilgiri Boys Hostel (BH-2)">Nilgiri Boys Hostel (BH-2)</option>
@@ -40,21 +53,20 @@
                 <div class="input-box">
                     <label for="Category Of Complaint" class="formbold-form-label"> Category Of Complaint</label>
                     <div class="role-dropdown">
-                        <select name="role" id="role" required class="formbold-form-input">
-                            <option value="" disabled selected placeholder="Choose the Category of your Complaint"
-                                </option>
-                            <option value="medical_staff">Medical Services</option>
-                            <option value="students">Website Issues</option>
-                            <option value="students">Hostel Facilities</option>
-                            <option value="students">Others</option>
+                        <select required name="category" id="details" required class="formbold-form-input">
+                            <option value="" disabled selected>Choose One category</option>
+                            <option value="Medical Services">Medical Services</option>
+                            <option value="Website Issues">Website Issues</option>
+                            <option value="Hostel Facilities">Hostel Facilities</option>
+                            <option value="Others">Others</option>
 
                         </select>
                     </div>
                 </div>
                 <div>
                     <label for="subject"><b>Complaint Details:</b></label>
-                    <textarea id="subject" name="subject" class="formbold-form-input"
-                        placeholder="Enter your complaint details" style="height:200px"></textarea>
+                    <textarea required id="subject" name="subject" class="formbold-form-input"
+                        placeholder="Enter your complaint details" style="height:150px"></textarea>
                 </div>
 
                 <div style="margin-top: 3%;">

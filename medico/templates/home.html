@@ -31,7 +31,7 @@
 
   <header class="header" data-header>
     <div class="container containhead" id="containhead">
-      <a href="#" class="logo">
+      <a  href="#" class="logo">
         <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Medico home">
       </a>
 
@@ -64,7 +64,7 @@
               <li class="dropdown-item"><a href="#">Medical Records</a></li>
               <li class="dropdown-item"><a href="#dietary">Pill store</a></li>
               {% endif %}
-              <li class="dropdown-item"><a href="#complaint">Complaint</a></li>
+              <li class="dropdown-item"><a href="{{ url_for('complaint_page') }}">Complaint</a></li>
             </ul>
           </li>
           <li class="navbar-item">
@@ -229,7 +229,7 @@
     <div class="input-box">
         <div class="surveysparrow">
             <img src="{{ url_for('static', filename='images/sparrow favicon.png') }}" />
-            <p>we run on surveysparrow</p>
+            <p>MedicoHealthCare</p>
         </div>
         <div class="write-reply">
             <input class="inputText" type="text" id="textInput" placeholder="Write a reply..." />

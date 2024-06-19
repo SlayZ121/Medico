@@ -78,9 +78,8 @@ body {
     padding: 14px 32px;
     border: none;
     font-weight: 600;
-    background-color: #ffffff;
-    /* Updated button background color */
-    color: #004050;
+    background-color: #004050;
+    color: #ffffff;
     width: 100%;
     cursor: pointer;
 }
