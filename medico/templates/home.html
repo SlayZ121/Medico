@@ -32,13 +32,13 @@
   <header class="header" data-header>
     <div class="container containhead" id="containhead">
       <a  href="#" class="logo">
-        <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Medico home">
+        <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" style="height: auto;" alt="Medico home">
       </a>
 
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
           <a href="#" class="logo">
-            <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" alt="Medico home">
+            <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" style="height: auto;" alt="Medico home">
           </a>
 
           <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
@@ -48,13 +48,13 @@
 
         <ul class="navbar-list">
           <li class="navbar-item">
-            <a href="{{url_for('home_page')}}" class="navbar-link title-md">Home</a>
+            <a href="{{url_for('home_page')}}" style="display:block;" class="navbar-link title-md">Home</a>
           </li>
           <li class="navbar-item">
-            <a href="#about" class="navbar-link title-md">About</a>
+            <a href="#about" style="display:block;" class="navbar-link title-md">About</a>
           </li>
           <li class="navbar-item dropdown">
-            <a href="#services" class="dropbtn">Services</a>
+            <a href="#services" style="display:block;" class="dropbtn">Services</a>
             <ul class="dropdown-menu">
               <li class="dropdown-item"><a href="{{ url_for('aptcheck_page') }}">Appointments</a></li>
               <li class="dropdown-item"><a href="#scheduler">Scheduler</a></li>
@@ -68,7 +68,7 @@
             </ul>
           </li>
           <li class="navbar-item">
-            <a href="#footer" class="navbar-link title-md">Contact</a>
+            <a href="#footer" style="display:block;" class="navbar-link title-md">Contact</a>
           </li>
         </ul>
       </nav>
@@ -114,7 +114,7 @@
           </div>
 
           <figure class="hero-banner" data-reveal="right">
-            <img src="{{ url_for('static', filename='images/hero-banner.jpeg') }}" width="590" height="517" loading="eager" alt="hero banner" class="w-100">
+            <img src="{{ url_for('static', filename='images/hero-banner.jpeg') }}" width="590" height="517" loading="eager" style="height: auto;" alt="hero banner" class="w-100">
           </figure>
         </div>
       </section>
@@ -164,7 +164,7 @@
           <div class="section footer-top" style="width: 100%; display: flex; justify-content: center;">
             <div class="footer-brand" data-reveal="bottom" style="text-align: center;">
               <a href="#" class="logo">
-                <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" loading="lazy" alt="Medico home">
+                <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" loading="lazy" style="height: auto;" alt="Medico home">
               </a>
               <ul class="contact-list has-after">
                 <li class="contact-item">
