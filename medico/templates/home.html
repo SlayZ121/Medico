@@ -76,10 +76,10 @@
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler></button>
 
       {% if current_user.is_authenticated %}
-       <a href="{{ url_for('logout_page') }}" class="btn has-before title-md">Logout</a>
+       <a href="{{ url_for('logout_page') }}" style="text-decoration: none;"style="text-decoration: none;" class="btn has-before title-md">Logout</a>
       {% else %}
-      <a href="{{ url_for('login_page') }}" class="btn has-before title-md">Log In</a>
-      <a href="{{ url_for('signup_page') }}" class="btn has-before title-md">Sign Up</a>
+      <a href="{{ url_for('login_page') }}" style="text-decoration: none;" class="btn has-before title-md">Log In</a>
+      <a href="{{ url_for('signup_page') }}" style="text-decoration: none;" class="btn has-before title-md">Sign Up</a>
       {% endif %}
 
       <div class="overlay" data-nav-toggler data-overlay></div>
@@ -170,7 +170,7 @@
                 <li class="contact-item">
                   <div class="item-icon"></div>
                   <div>
-                    <p>Main Email : <a href="mailto:medico@gmail.com" class="contact-link">medico@gmail.com</a></p>
+                    <p>Main Email : <a href="mailto:medico@gmail.com"  class="contact-link">medico@gmail.com</a></p>
                     <p>Inquiries : <a href="mailto:Info@mail.com" class="contact-link">medico@gmail.com</a></p>
                   </div>
                 </li>
@@ -212,7 +212,7 @@
         <h1>Start a Conversation</h1>
         <p>The team typically replies in a few minutes.</p>
         <button class="new-conversation" type="button" onclick="openConversation()">
-            <span>New Conversation</span>
+            <span  >New Conversation</span>
             <i class="material-icons-outlined"> send </i>
         </button>
     </div>

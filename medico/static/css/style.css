@@ -297,6 +297,8 @@ body {
 
 .contact-link {
   display: inline;
+  color: #fff;
+  text-decoration: none !important;
   transition: var(--transition-1);
 }
 
@@ -422,6 +424,7 @@ body {
 
 button {
   cursor: pointer;
+  
 }
 
 ion-icon {
