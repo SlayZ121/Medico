@@ -996,3 +996,22 @@ body.nav-active {
   background-color: #fff3cd;
   color: #856404;
 }
+.closee {
+  float: right;
+  
+  line-height: 1;
+  color: #000;
+  text-shadow: none;
+  opacity: 0.5;
+  border: none;
+  background: none;
+  font-size: 3rem;
+}
+
+.closee:hover,
+.closee:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.75;
+}

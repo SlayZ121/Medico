@@ -4,48 +4,35 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Medico</title>
   <meta name="title" content="Medico">
-  
   <link rel="shortcut icon" href="{{ url_for('static', filename='images/medico.png') }}" type="image/svg+xml">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
   <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero-banner.png') }}">
   <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero-bg.png') }}">
-
-  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
-
 <body id="top">
-
   <div class="preloader" data-preloader>
     <div class="circle"></div>
   </div>
-
   <header class="header" data-header>
     <div class="container containhead" id="containhead">
-      <a  href="#" class="logo">
+      <a href="#" class="logo">
         <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" style="height: auto;" alt="Medico home">
       </a>
-
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
           <a href="#" class="logo">
             <img src="{{ url_for('static', filename='images/Medico logo.png') }}" width="136" height="46" style="height: auto;" alt="Medico home">
           </a>
-
           <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
             <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
           </button>
         </div>
-
         <ul class="navbar-list">
           <li class="navbar-item">
             <a href="{{url_for('home_page')}}" style="display:block;" class="navbar-link title-md">Home</a>
@@ -72,26 +59,22 @@
           </li>
         </ul>
       </nav>
-
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler></button>
-
       {% if current_user.is_authenticated %}
-       <a href="{{ url_for('logout_page') }}" style="text-decoration: none;"style="text-decoration: none;" class="btn has-before title-md">Logout</a>
+       <a href="{{ url_for('logout_page') }}" style="text-decoration: none;" class="btn has-before title-md">Logout</a>
       {% else %}
       <a href="{{ url_for('login_page') }}" style="text-decoration: none;" class="btn has-before title-md">Log In</a>
       <a href="{{ url_for('signup_page') }}" style="text-decoration: none;" class="btn has-before title-md">Sign Up</a>
       {% endif %}
-
       <div class="overlay" data-nav-toggler data-overlay></div>
     </div>
   </header>
-
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         <div class="flashes">
             {% for category, message in messages %}
                 <div class="flash flash-{{ category }}">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="closee" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     {{ message }}
@@ -100,7 +83,6 @@
         </div>
     {% endif %}
   {% endwith %}
-
   <main>
     <article>
       <section class="section hero tochange" id="tochange" aria-label="home">
@@ -112,13 +94,11 @@
               Our Mission!
             </h1>
           </div>
-
           <figure class="hero-banner" data-reveal="right">
             <img src="{{ url_for('static', filename='images/hero-banner.jpeg') }}" width="590" height="517" loading="eager" style="height: auto;" alt="hero banner" class="w-100">
           </figure>
         </div>
       </section>
-
       <section id="about" class="section about" aria-labelledby="about-label">
         <div class="video-container">
           <video autoplay muted loop id="myVideo">
@@ -135,13 +115,11 @@
               education, and treatment services. <br>
               Health Centre is located in A block of ABV-IIITM Gwalior.
             </p>
-
             <ul class="tab-list" data-reveal="left">
               <li><button class="tab-btn active">Vision</button></li>
               <li><button class="tab-btn">Mission</button></li>
               <li><button class="tab-btn">Strategy</button></li>
             </ul>
-
             <div class="wrapper">
               <ul class="about-list">
                 <li class="about-item" data-reveal="left">
@@ -158,7 +136,6 @@
           </div>
         </div>
       </section>
-
       <footer id="footer" class="footer">
         <div class="container" style="width: 100%; text-align: center;">
           <div class="section footer-top" style="width: 100%; display: flex; justify-content: center;">
@@ -170,7 +147,7 @@
                 <li class="contact-item">
                   <div class="item-icon"></div>
                   <div>
-                    <p>Main Email : <a href="mailto:medico@gmail.com"  class="contact-link">medico@gmail.com</a></p>
+                    <p>Main Email : <a href="mailto:medico@gmail.com" class="contact-link">medico@gmail.com</a></p>
                     <p>Inquiries : <a href="mailto:Info@mail.com" class="contact-link">medico@gmail.com</a></p>
                   </div>
                 </li>
@@ -196,13 +173,11 @@
         <img src="{{ url_for('static', filename='images/Sparrow Bird.png') }}" alt="Sparrow Bird image" />
     </button>
 </div>
-
 <div class="chat-bar-close" id="chat-close">
     <button id="chat-close-button" type="button" class="collapsible close" onclick="chatClose()">
         <i class="material-icons-outlined"> close </i>
     </button>
 </div>
-
 <div class="chat-window" id="chat-window1">
     <div class="hi-there">
         <p class="p1">Hi There</p>
@@ -212,17 +187,14 @@
         <h1>Start a Conversation</h1>
         <p>The team typically replies in a few minutes.</p>
         <button class="new-conversation" type="button" onclick="openConversation()">
-            <span  >New Conversation</span>
+            <span>New Conversation</span>
             <i class="material-icons-outlined"> send </i>
         </button>
     </div>
 </div>
-
-
 <div class="chat-window2" id="chat-window2">
     <div class="message-box" id="messageBox">
         <div class="hi-there">
-            
             <p class="p2">Medico Bot</p>
         </div>
     </div>
@@ -241,12 +213,28 @@
         </div>
     </div>
 </div>
-  
-
   <!-- Scripts -->
   <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
   <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/@ionic/core@latest/dist/ionic/ionic.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all close buttons
+      var closeButtons = document.querySelectorAll('.flash .closee');
+
+      // Add click event listener to each close button
+      closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          // Find the flash message element
+          var flashMessage = button.closest('.flash');
+
+          // Remove the flash message element
+          if (flashMessage) {
+            flashMessage.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
-
