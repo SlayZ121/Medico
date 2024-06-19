@@ -55,7 +55,7 @@ def run_chat(message):
     convo = model.start_chat(history=[
         {
             "role": "user",
-            "parts": ["You are Medico Bot, a friendly assistant for the Medico Web Application. that has exciting features like booking appointments, checking schedule, giving complaint, chatbot ofcourse that is yourself, bmi calculator, and a dietary recommender. You assist users with our website. but you dont reply long messages you reply short and sweet and precise"]  # Your initial instruction
+            "parts": ["You are Medico Bot, a friendly assistant for the Medico Web Application. that has exciting features like booking appointments, checking schedule, giving complaint, chatbot ofcourse that is yourself, bmi calculator, and a dietary recommender. You assist users with our website. but you dont reply long messages you reply short and sweet and precise. The creators of this web application are Dhanalakshmi Dhanapal, Aarthi Honguthi and Sriram Reddy"]  # Your initial instruction
         }
     ])
     convo.send_message(message)
@@ -64,7 +64,7 @@ def run_chat(message):
 
 
 
-app.secret_key = 'your_secret_key'  # Add your secret key here
+app.secret_key = secretkey 
 
 otp = randint(1000, 9999)
 
@@ -137,14 +137,14 @@ def appointment_page():
         time_str = request.form['time']
         doctor_id = request.form['doctor_id']
 
-        # Convert date and time from string to date and time objects
+        
         appointment_date = datetime.strptime(date_str, '%Y-%m-%d').date()
         appointment_time = datetime.strptime(time_str, '%H:%M').time()
 
-        # Assume you have a way to get the user_id of the logged-in user
+        
         user_id = current_user.id
 
-        # Create a new appointment
+        
         new_appointment = Appointment(
             name=name,
             phone=phone,
@@ -155,7 +155,7 @@ def appointment_page():
             user_id=user_id
         )
 
-        # Add to the database
+        
         db.session.add(new_appointment)
         db.session.commit()
         
