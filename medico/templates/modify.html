@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Modify</title>
+    <link rel="shortcut icon" href="assets\images\medico.png" type="image/svg+xml">
+
+    <link rel="stylesheet" href="assets/css/modify.css">
+</head>
+
+
+<body
+    style="background: url('assets/images/footer-bg.png') no-repeat center center fixed; background-size: cover; background-color: #005761;">
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper"  style="width: 50% ; justify-content: center; margin-top: 2%;">
+            <form action="#" method="POST">
+                <div class="formbold-mb-5">
+                    <label for="name" class="formbold-form-label"> Full Name </label>
+                    <input type="text" name="name" id="name" placeholder="Full Name" class="formbold-form-input" />
+                </div>
+                <div class="formbold-mb-5">
+                    <label for="date" class="formbold-form-label"> Date </label>
+                    <input type="date" name="date" id="date" class="formbold-form-input" />
+                </div>
+                <div class="flex flex-wrap formbold--mx-3">
+                    <div class="w-full sm:w-half formbold-px-3">
+                        <div class="formbold-mb-5 w-full">
+                            <label for="time" class="formbold-form-label"> From </label>
+                            <input type="time" name="time" id="time" class="formbold-form-input" />
+                        </div>
+                    </div>
+                    <div class="w-full sm:w-half formbold-px-3">
+                        <div class="formbold-mb-5">
+                            <label for="time" class="formbold-form-label"> To </label>
+                            <input type="time" name="time" id="time" class="formbold-form-input" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="subject"><b>Reason</b></label>
+                    <textarea id="subject" name="subject" class="formbold-form-input"
+                        placeholder="Reason to change timings" style="height:280px"></textarea>
+                </div>
+
+                <div style="margin-top: 3%;">
+                    <button class="formbold-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
