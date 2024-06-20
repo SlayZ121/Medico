@@ -126,6 +126,12 @@ def bmi_page():
 def aptcheck_page():
     return render_template('appointment0.html')
 
+@app.route('/schedule', methods=['GET', 'POST'])
+@login_required
+def schedule_page():
+    doctors = User.query.filter_by(role='medical_staff').all()
+    return render_template('scheduler.html', doctors=doctors)
+
 @app.route('/appointment', methods=['GET', 'POST'])
 @login_required
 def appointment_page():

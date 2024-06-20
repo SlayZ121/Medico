@@ -44,7 +44,7 @@
             <a href="#services" style="display:block;" class="dropbtn">Services</a>
             <ul class="dropdown-menu">
               <li class="dropdown-item"><a href="{{ url_for('aptcheck_page') }}">Appointments</a></li>
-              <li class="dropdown-item"><a href="#scheduler">Scheduler</a></li>
+              <li class="dropdown-item"><a href="{{ url_for('schedule_page') }}">Scheduler</a></li>
               <li class="dropdown-item"><a href="{{ url_for('bmi_page') }}">BMI</a></li>
               <li class="dropdown-item"><a href="#dietary">Dietometer</a></li>
               {% if current_user.is_authenticated and current_user.role == 'medical_staff'%}
