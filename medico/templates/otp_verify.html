@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Verification Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/otp.css') }}" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flashes">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="container">
+        <header>
+            <i class="bx bxs-check-shield"></i>
+        </header>
+        <h4>Enter OTP Code</h4>
+        <form id="otp-form" action="/otp-verification-modify" method="post">
+            <div class="input-field">
+                <input type="number" maxlength="1" class="otp-input" required />
+                <input type="number" maxlength="1" class="otp-input" disabled />
+                <input type="number" maxlength="1" class="otp-input" disabled />
+                <input type="number" maxlength="1" class="otp-input" disabled  />
+            </div>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/otp.js') }}"></script>
+        
+    
+</body>
+
+</html>

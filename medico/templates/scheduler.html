@@ -19,7 +19,7 @@
             <div class="formbold-mb-5">
                 <label for="doctor" class="formbold-form-label"> Doctor </label>
                 <label name="doctor" id="doctor" class="formbold-form-input">
-                    {{ doctor.username }}
+                    {{ doctor.username }} - {{ doctor.specialisation }}
                 </label>
             </div>
             <div class="formbold-mb-5">
@@ -34,17 +34,19 @@
                 <label for="date" class="formbold-form-label"> Date </label>
                 <input type="date" name="date" id="date_{{ doctor.username }}" class="formbold-form-input" onchange="updateTimes('{{ doctor.username }}')" />
             </div>
+            {% if current_user.is_authenticated and current_user.role == 'medical_staff'%}
             <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto;">
-                <button class="button" style="margin-top: 3%;">
+                <a href="{{ url_for('modify_schedule', doctor_id=doctor.id) }}" class="button" style="margin-top: 3%;">
                     Modify
-                </button>
+                </a>
             </div>
+            {% endif %}
         </div>
         {% endfor %}
     </main>
     <script>
         const doctorSchedules = {
-            "Dr. J.C Sharma": {
+            "Dr. J.C. Sharma": {
                 "Monday": ["10:00", "14:00"],
                 "Wednesday": ["10:00", "14:00"],
                 "Friday": ["10:00", "14:00"]
