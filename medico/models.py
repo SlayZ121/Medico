@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     role = db.Column(db.String(length=10), nullable=False)
+    specialisation = db.Column(db.String(length=100), nullable=True) 
     
     # Relationship for user appointments
     user_appointments = db.relationship('Appointment', 

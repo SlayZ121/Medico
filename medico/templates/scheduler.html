@@ -14,136 +14,79 @@
         <h1>Task Scheduler</h1>
     </header>
     <main>
+        {% for doctor in doctors %}
         <div class="task-form" style="flex-wrap: wrap;">
             <div class="formbold-mb-5">
                 <label for="doctor" class="formbold-form-label"> Doctor </label>
                 <label name="doctor" id="doctor" class="formbold-form-input">
-                    <option value="Dr. J. C. Sharma">Dr.J.C.Sharma - General Physician</option>
+                    {{ doctor.username }} - {{ doctor.specialisation }}
                 </label>
             </div>
             <div class="formbold-mb-5">
                 <label for="time1" class="formbold-form-label"> From </label>
-                <input type="time" name="time1" id="time1" class="formbold-form-input" />
+                <input type="time" name="time1" id="time1_{{ doctor.username }}" class="formbold-form-input" />
             </div>
             <div class="formbold-mb-5">
                 <label for="time2" class="formbold-form-label"> To </label>
-                <input type="time" name="time2" id="time2" class="formbold-form-input" />
+                <input type="time" name="time2" id="time2_{{ doctor.username }}" class="formbold-form-input" />
             </div>
             <div class="formbold-mb-5">
                 <label for="date" class="formbold-form-label"> Date </label>
-                <input type="date" name="date" id="date" class="formbold-form-input" />
+                <input type="date" name="date" id="date_{{ doctor.username }}" class="formbold-form-input" onchange="updateTimes('{{ doctor.username }}')" />
             </div>
-            <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto; flex: 0 0 auto;">
-                <button class="button" style="margin-top: 3%;">
-                    Modify
-                </button>
-            </div>
-        </div>
-
-        <div class="task-form" style="flex-wrap: wrap;">
-            <div class="formbold-mb-5">
-                <label for="doctor" class="formbold-form-label"> Doctor </label>
-                <label name="doctor" id="doctor" class="formbold-form-input">
-                    <option value="Dr. J. C. Sharma">Dr.Rajeev Kumar - General Physician</option>
-                </label>
-            </div>
-            <div class="formbold-mb-5">
-                <label for="time1" class="formbold-form-label"> From </label>
-                <input type="time" name="time1" id="time1" class="formbold-form-input" />
-            </div>
-            <div class="formbold-mb-5">
-                <label for="time2" class="formbold-form-label"> To </label>
-                <input type="time" name="time2" id="time2" class="formbold-form-input" />
-            </div>
-            <div class="formbold-mb-5">
-                <label for="date" class="formbold-form-label"> Date </label>
-                <input type="date" name="date" id="date" class="formbold-form-input" />
-            </div>
+            {% if current_user.is_authenticated and current_user.role == 'medical_staff'%}
             <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto;">
-            <button class="button" style="margin-top: 3%;">
-                Modify
-            </button>
-            </div>
-        </div>
-
-        <div class="task-form" style="flex-wrap: wrap;">
-            <div class="formbold-mb-5">
-                <label for="doctor" class="formbold-form-label"> Doctor </label>
-                <label name="doctor" id="doctor" class="formbold-form-input">
-                    <option value="Dr. J. C. Sharma">Dr. Neeraj Kumar - Homeopathic       </option>
-                </label>
-            </div>
-            <div class="formbold-mb-5">
-                <label for="time1" class="formbold-form-label"> From </label>
-                <input type="time" name="time1" id="time1" class="formbold-form-input" />
-            </div>
-            <div class="formbold-mb-5">
-                <label for="time2" class="formbold-form-label"> To </label>
-                <input type="time" name="time2" id="time2" class="formbold-form-input" />
-            </div>
-            <div class="formbold-mb-5">
-                <label for="date" class="formbold-form-label"> Date </label>
-                <input type="date" name="date" id="date" class="formbold-form-input" />
-            </div>
-            <div div class="modify-button" style="margin-top: 3%; flex: 0 0 auto;" flex: 0 0 auto;">
-                <button class="button" style="margin-top: 3%;">
+                <a href="{{ url_for('modify_schedule', doctor_id=doctor.id) }}" class="button" style="margin-top: 3%;">
                     Modify
-                </button>
+                </a>
             </div>
+            {% endif %}
         </div>
-
-        <div class="task-form" style="flex-wrap: wrap;">
-            <div class="formbold-mb-5">
-                <label for="doctor" class="formbold-form-label"> Doctor </label>
-                <label name="doctor" id="doctor" class="formbold-form-input">
-                    <option value="Dr. J. C. Sharma">Dr.Namita Agarwal - Gynecologist</option>
-                </label>
-            </div>
-            <div class="formbold-mb-5">
-                <label for="time1" class="formbold-form-label"> From </label>
-                <input type="time" name="time1" id="time1" class="formbold-form-input" />
-            </div>
-            <div class="formbold-mb-5">
-                <label for="time2" class="formbold-form-label"> To </label>
-                <input type="time" name="time2" id="time2" class="formbold-form-input" />
-            </div>
-            <div class="formbold-mb-5">
-                <label for="date" class="formbold-form-label"> Date </label>
-                <input type="date" name="date" id="date" class="formbold-form-input" />
-            </div>
-            <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto;">
-                <button class="button" style="margin-top: 3%;">
-                    Modify
-                </button>
-            </div>
-        </div>
-
-        <div class="task-form" style="flex-wrap: wrap;">
-            <div class="formbold-mb-5">
-                <label for="doctor" class="formbold-form-label"> Doctor </label>
-                <label name="doctor" id="doctor" class="formbold-form-input">
-                    <option value="Dr. J. C. Sharma">Dr.Manoj Rathore - Physiotherapist</option>
-                </label>
-            </div>
-            <div class="formbold-mb-5">
-                <label for="time1" class="formbold-form-label"> From </label>
-                <input type="time" name="time1" id="time1" class="formbold-form-input" />
-            </div>
-            <div class="formbold-mb-5">
-                <label for="time2" class="formbold-form-label"> To </label>
-                <input type="time" name="time2" id="time2" class="formbold-form-input" />
-            </div>
-            <div class="formbold-mb-5">
-                <label for="date" class="formbold-form-label"> Date </label>
-                <input type="date" name="date" id="date" class="formbold-form-input" />
-            </div>
-            <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto;" >
-                <button class="button">
-                    Modify
-                </button>
-            </div>
-        </div>
+        {% endfor %}
     </main>
+    <script>
+        const doctorSchedules = {
+            "Dr. J.C. Sharma": {
+                "Monday": ["10:00", "14:00"],
+                "Wednesday": ["10:00", "14:00"],
+                "Friday": ["10:00", "14:00"]
+            },
+            "Dr. Rajeev Kumar": {
+                "Tuesday": ["10:00", "14:00"],
+                "Thursday": ["10:00", "14:00"],
+                "Saturday": ["10:00", "14:00"],
+                "Wednesday": ["14:00", "17:00"]
+            },
+            "Dr. Neeraj Kumar": {
+                "Thursday": ["10:00", "12:00"]
+            },
+            "Dr. Namita Agarwal": {
+                "Monday": ["10:00", "12:00"],
+                "Friday": ["10:00", "12:00"]
+            },
+            "Dr. Manoj Rathore": {
+                "Sunday": ["14:00", "17:00"]
+            }
+        };
+
+        function updateTimes(doctorName) {
+            const dateInput = document.getElementById(`date_${doctorName}`);
+            const dateValue = new Date(dateInput.value);
+            const day = dateValue.toLocaleDateString('en-US', { weekday: 'long' });
+
+            const fromTimeInput = document.getElementById(`time1_${doctorName}`);
+            const toTimeInput = document.getElementById(`time2_${doctorName}`);
+
+            if (doctorSchedules[doctorName] && doctorSchedules[doctorName][day]) {
+                const [fromTime, toTime] = doctorSchedules[doctorName][day];
+                fromTimeInput.value = fromTime;
+                toTimeInput.value = toTime;
+            } else {
+                fromTimeInput.value = '';
+                toTimeInput.value = '';
+            }
+        }
+    </script>
 </body>
 
 </html>
