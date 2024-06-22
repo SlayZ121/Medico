@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from random import randint
 from .mailkey import mailkey, secretkey
-from medico.models import User, Appointment
+from medico.models import User, Appointment, ModifiedSchedule
 from medico import db
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import datetime, date, time
@@ -138,7 +138,10 @@ def modify_schedule(doctor_id):
         # Generate OTP and store it in session
         otp = randint(1000, 9999)
         session['otp'] = otp
-        session['doctor_id'] = doctor_id  # Store doctor_id for later use
+        session['doctor_id'] = doctor_id
+        session['date_str'] = date_str
+        session['from_time'] = from_time
+        session['to_time'] = to_time
 
         # Send email to admin with modification request and OTP
         subject = "Schedule Modification Request"
@@ -194,7 +197,6 @@ def modify_schedule(doctor_id):
 
     return render_template('modify.html', doctor=doctor)
 
-
 @app.route('/otp-verification-modify', methods=['GET', 'POST'])
 @login_required
 def otp_verification_modify():
@@ -202,18 +204,50 @@ def otp_verification_modify():
         entered_otp = request.form['otp']
         stored_otp = session.get('otp')
         doctor_id = session.get('doctor_id')
+        date_str = session.get('date_str')
+        from_time = session.get('from_time')
+        to_time = session.get('to_time')
 
         if stored_otp and int(entered_otp) == stored_otp:
-            # OTP verified successfully, proceed with modifying schedule in the database
-            # Example: Update doctor's schedule in the database here
+            # OTP verified successfully, save modification in the database
+            new_schedule = ModifiedSchedule(
+                doctor_id=doctor_id,
+                date=datetime.strptime(date_str, '%Y-%m-%d').date(),
+                from_time=datetime.strptime(from_time, '%H:%M').time(),
+                to_time=datetime.strptime(to_time, '%H:%M').time()
+            )
+            db.session.add(new_schedule)
+            db.session.commit()
+            
             session.pop('otp', None)
             session.pop('doctor_id', None)
+            session.pop('date_str', None)
+            session.pop('from_time', None)
+            session.pop('to_time', None)
+            
             flash('OTP verification successful! Schedule modified.', 'success')
-            return redirect(url_for('home_page'))  # Redirect to home page or any other appropriate page
+            return redirect(url_for('home_page'))
         else:
             flash('Invalid OTP. Please try again.', 'danger')
 
     return render_template('otp_verify.html')
+
+@app.route('/api/get-modified-schedule')
+def get_modified_schedule():
+    doctor_name = request.args.get('doctor_name')
+    date_str = request.args.get('date')
+
+    doctor = User.query.filter_by(username=doctor_name).first()
+    if doctor:
+        modified_schedule = ModifiedSchedule.query.filter_by(doctor_id=doctor.id, date=datetime.strptime(date_str, '%Y-%m-%d').date()).first()
+        if modified_schedule:
+            return jsonify({
+                'exists': True,
+                'from_time': modified_schedule.from_time.strftime('%H:%M'),
+                'to_time': modified_schedule.to_time.strftime('%H:%M')
+            })
+
+    return jsonify({'exists': False})
 
 
 @app.route('/appointment', methods=['GET', 'POST'])

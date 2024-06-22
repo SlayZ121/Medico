@@ -60,3 +60,14 @@ class Appointment(db.Model):
     def get_doctor_name(self):
         doctor = User.query.get(self.doctor_id)
         return doctor.username if doctor else "Unknown Doctor"
+    
+class ModifiedSchedule(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    doctor_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    from_time = db.Column(db.Time, nullable=False)
+    to_time = db.Column(db.Time, nullable=False)
+
+    doctor = db.relationship('User', back_populates='modified_schedules')
+
+User.modified_schedules = db.relationship('ModifiedSchedule', back_populates='doctor')

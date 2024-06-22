@@ -69,15 +69,30 @@
             }
         };
 
-        function updateTimes(doctorName) {
+        
+    </script>
+    <script>
+        async function fetchModifiedSchedule(doctorName, date) {
+            const response = await fetch(`/api/get-modified-schedule?doctor_name=${encodeURIComponent(doctorName)}&date=${date}`);
+            const data = await response.json();
+            return data;
+        }
+    
+        async function updateTimes(doctorName) {
             const dateInput = document.getElementById(`date_${doctorName}`);
             const dateValue = new Date(dateInput.value);
+            const dateStr = dateValue.toISOString().split('T')[0];
             const day = dateValue.toLocaleDateString('en-US', { weekday: 'long' });
-
+    
             const fromTimeInput = document.getElementById(`time1_${doctorName}`);
             const toTimeInput = document.getElementById(`time2_${doctorName}`);
-
-            if (doctorSchedules[doctorName] && doctorSchedules[doctorName][day]) {
+    
+            const modifiedSchedule = await fetchModifiedSchedule(doctorName, dateStr);
+    
+            if (modifiedSchedule.exists) {
+                fromTimeInput.value = modifiedSchedule.from_time;
+                toTimeInput.value = modifiedSchedule.to_time;
+            } else if (doctorSchedules[doctorName] && doctorSchedules[doctorName][day]) {
                 const [fromTime, toTime] = doctorSchedules[doctorName][day];
                 fromTimeInput.value = fromTime;
                 toTimeInput.value = toTime;
@@ -87,6 +102,7 @@
             }
         }
     </script>
+    
 </body>
 
 </html>
