@@ -1,7 +1,7 @@
 /* General Styles */
 body {
-    background: url('assets/images/footer-bg.png') no-repeat center center fixed;
-    
+background: url("{{ url_for('static', filename='images/footer-bg.png') }}") no-repeat center center fixed;
+    background-size: cover;
     background-size: cover;
     background-color: #005761;
     font-family: Arial, sans-serif;
