@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            background: rgba(0, 87, 97, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(251, 244, 244, 0.1);
+        }
+
+        .form-box {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-row div {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .form-row div:last-child {
+            margin-right: 0;
+        }
+
+        .form-box label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-box input,
+        .form-box select,
+        .form-box textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-box .form-row:last-child {
+            justify-content: flex-end;
+        }
+
+        .form-box .buttond {
+            margin-top: 10px;
+            flex: 0 0 auto;
+            background-color: #4CAF50;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .buttond {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #fff;
+            background-image: linear-gradient(to bottom right, #50c6b6, #008891);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 2px 0px #008891;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        .buttond:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 3px 0px #008891;
+        }
+
+        .buttond:active {
+            transform: translateY(0px);
+            box-shadow: none;
+            background-image: linear-gradient(to bottom right, #008891, #50c6b6);
+        }
+
+        .records {
+            text-align: center;
+        }
+
+        .filters {
+            margin-bottom: 20px;
+        }
+
+        .filters select,
+        .filters input {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .records-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .records-table th,
+        .records-table td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .records-table th {
+            background-color: #f2f2f2;
+        }
+
+        .view-buttond {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .view-buttond:hover {
+            background-color: #45a049;
+        }
+
+        .formbold-form-input {
+            width: 100%;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            background: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 16px;
+            color: #005761;
+            outline: none;
+            resize: none;
+        }
+
+        .formbold-form-input:focus {
+            border-color: #08684a;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .formbold-form-label {
+            display: block;
+            font-weight: 500;
+            font-size: 16px;
+            color: #c3c3c3;
+            margin-bottom: 12px;
+        }
+
+        .records {
+            margin: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-right: 20px;
+        }
+
+        .formbold-form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .formbold-form-input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .task-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .task-list {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .task button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body
+    style="background: url('assets/images/footer-bg.png') no-repeat center center fixed; background-size: cover; background-color: #005761;">
+
+    <div class="container">
+        <div class="form-box">
+            <div class="form-row">
+                <div>
+                    <label for="named" class="formbold-form-label">Name </label>
+                    <input type="text" name="named" id="named" placeholder="Name" class="formbold-form-input" />
+                </div>
+                <div>
+                    <label for="rollnod" class="formbold-form-label">Roll Number</label>
+                    <input type="text" name="named" id="named" placeholder="Roll Number" class="formbold-form-input" />
+                </div>
+                <div>
+                    <label for="phoned" class="formbold-form-label">Phone Number </label>
+                    <input type="text" name="named" id="named" placeholder="Phone Number" class="formbold-form-input" />
+                </div>
+            </div>
+            <div class="form-row"></div>
+            <div class="form-row">
+                <div class="formbold-mb-5 w-full">
+                    <label for="dated" class="formbold-form-label"> Date </label>
+                    <input type="dated" name="date" id="dated" class="formbold-form-input" />
+                </div>
+
+                <div class="formbold-mb-5">
+                    <label for="Select your Hostel" class="formbold-form-label"> Select your Hostel</label>
+                    <select id="aread" name="area" class="formbold-form-input">
+                        <option value="----">----</option>
+                        <option value="Gangotri Hostel">Gangotri Girls Hostel</option>
+                        <option value="Aravalli Boys Hostel (BH-1)">Aravalli Boys Hostel (BH-1)</option>
+                        <option value="Nilgiri Boys Hostel (BH-2)">Nilgiri Boys Hostel (BH-2)</option>
+                        <option value="Shivalik Boys Hostel (BH-3)">Shivalik Boys Hostel (BH-3)</option>
+                        <option value="SriShailam Boys Hostel (IVH)">SriShailam Boys Hostel (IVH)</option>
+                        <option value="Satpura Boys Hostel">Satpura Boys Hostel</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="rollnod" class="formbold-form-label">Pills</label>
+                    <input type="textd" name="named" id="named" placeholder="Pills" class="formbold-form-input" />
+                </div>
+            </div>
+            <div class="form-row"></div>
+            <div class="form-row">
+
+                <div style="flex: 1;">
+                    <label for="subjectd" class="formbold-form-label">Complaint</label>
+                    <textarea id="subjectd" name="subject" placeholder="Enter your complaint details"
+                        class="formbold-form-input" style="height:200px"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-row" style="justify-content: flex-end;">
+            <button class="buttond">Submit</button>
+        </div>
+    </div>
+    <div class="records">
+        <h1 style="color: white;">Medical Records </h1>
+        <div class="task-form">
+
+            <input type="text" id="name" placeholder="Name">
+            <input type="text" id="rollNumber" placeholder="Roll Number">
+
+            <select id="hostel">
+                <option value="----">Select your Hostel</option>
+                <option value="Gangotri Hostel">Gangotri Girls Hostel</option>
+                <option value="Aravalli Boys Hostel (BH-1)">Aravalli Boys Hostel (BH-1)</option>
+                <option value="Nilgiri Boys Hostel (BH-2)">Nilgiri Boys Hostel (BH-2)</option>
+                <option value="Shivalik Boys Hostel (BH-3)">Shivalik Boys Hostel (BH-3)</option>
+                <option value="SriShailam Boys Hostel (IVH)">SriShailam Boys Hostel (IVH)</option>
+                <option value="Satpura Boys Hostel">Satpura Boys Hostel</option>
+            </select>
+            <input type="date" id="deadline">
+            <button id="add-task">View</button>
+        </div>
+    </div>
+    <div class="task-list" id="task-list">
+        <!-- Tasks will be added here dynamically -->
+    </div>
+    <script src="assets/js/record.js"></script>
+
+</body>
+
+</html>
