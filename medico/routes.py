@@ -118,6 +118,7 @@ def bmi_page():
 def aptcheck_page():
     return render_template('appointment0.html')
 
+
 @app.route('/schedule', methods=['GET', 'POST'])
 @login_required
 def schedule_page():
@@ -248,6 +249,11 @@ def get_modified_schedule():
             })
 
     return jsonify({'exists': False})
+
+@app.route('/medicalrecord')
+@login_required
+def medrecord_page():
+    return render_template('records.html')
 
 
 @app.route('/appointment', methods=['GET', 'POST'])
