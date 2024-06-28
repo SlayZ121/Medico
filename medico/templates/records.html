@@ -195,9 +195,25 @@
 
         .task-form {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* Adjust the gap as needed */
         }
+
+        .formbold-mb-5 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .formbold-form-input {
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 200px;
+        }
+
 
         .task-list {
             border: 1px solid #ddd;
@@ -212,6 +228,10 @@
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            background-color: white;
+            /* Background color white */
+            color: black;
+            /* Text color black */
         }
 
         .task button {
@@ -290,8 +310,8 @@
             <div class="form-row"></div>
             <div class="form-row">
                 <div class="formbold-mb-5 w-full">
-                    <label for="dated" class="formbold-form-label"> Date </label>
-                    <input type="dated" name="date" id="dated" class="formbold-form-input" />
+                    <label for="date" class="formbold-form-label"> Date </label>
+                    <input type="date" name="date" id="date" class="formbold-form-input" />
                 </div>
 
                 <div class="formbold-mb-5">
@@ -328,21 +348,34 @@
     <div class="records">
         <h1 style="color: white;">Medical Records </h1>
         <div class="task-form">
+            <button id="add-task" style=" height: 40px; width: 80px; margin-top: 1.5%;">
+                Filter By
+            </button>
 
-            <input type="text" id="name" placeholder="Name">
-            <input type="text" id="rollNumber" placeholder="Roll Number">
 
-            <select id="hostel">
-                <option value="----">Select your Hostel</option>
-                <option value="Gangotri Hostel">Gangotri Girls Hostel</option>
-                <option value="Aravalli Boys Hostel (BH-1)">Aravalli Boys Hostel (BH-1)</option>
-                <option value="Nilgiri Boys Hostel (BH-2)">Nilgiri Boys Hostel (BH-2)</option>
-                <option value="Shivalik Boys Hostel (BH-3)">Shivalik Boys Hostel (BH-3)</option>
-                <option value="SriShailam Boys Hostel (IVH)">SriShailam Boys Hostel (IVH)</option>
-                <option value="Satpura Boys Hostel">Satpura Boys Hostel</option>
-            </select>
-            <input type="date" id="deadline">
-            <button id="add-task">Filter By</button>
+            <div class="formbold-mb-5">
+                <label for="rollNumber" class="formbold-form-label">Roll Number</label>
+                <input type="text" name="rollNumber" id="rollNumber" placeholder="Roll Number"
+                    class="formbold-form-input" />
+            </div>
+            <div class="formbold-mb-5">
+                <label for="Select your Hostel" class="formbold-form-label"> Select your Hostel</label>
+                <select id="hostel" name="area" class="formbold-form-input">
+                    <option value="----">----</option>
+                    <option value="Gangotri Hostel">Gangotri Girls Hostel</option>
+                    <option value="Aravalli Boys Hostel (BH-1)">Aravalli Boys Hostel (BH-1)</option>
+                    <option value="Nilgiri Boys Hostel (BH-2)">Nilgiri Boys Hostel (BH-2)</option>
+                    <option value="Shivalik Boys Hostel (BH-3)">Shivalik Boys Hostel (BH-3)</option>
+                    <option value="SriShailam Boys Hostel (IVH)">SriShailam Boys Hostel (IVH)</option>
+                    <option value="Satpura Boys Hostel">Satpura Boys Hostel</option>
+                </select>
+            </div>
+            <div class="formbold-mb-5 w-full">
+                <label for="deadline" class="formbold-form-label"> Date </label>
+                <input type="date" name="deadline" id="deadline" class="formbold-form-input" />
+            </div>
+
+
         </div>
     </div>
     <div class="task-list" id="task-list" style="color: #f2f2f2;">
@@ -356,7 +389,7 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/records.js"></script>
+    <script src="assets/js/record.js"></script>
 
 </body>
 
