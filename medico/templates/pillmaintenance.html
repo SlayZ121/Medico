@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/scheduler.css">
+    <title>Pill Maintenance</title>
+    <link rel="shortcut icon" href="assets/images/medico.png" type="image/svg+xml">
+</head>
+<style>
+    .task-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        /* Adjust the gap as needed */
+    }
+</style>
+
+<body>
+    <header>
+        <h1>Pill Maintenance</h1>
+    </header>
+    <main>
+        <div class="task-form" style="flex-wrap: wrap;">
+
+            <div class="formbold-mb-5">
+                <div>
+                    <label for="rollnod" class="formbold-form-label">Pills</label>
+                    <input type="textd" name="named" id="named" class="formbold-form-input" />
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="Category" class="formbold-form-label"> Category</label>
+                <div class="role-dropdown">
+                    <select name="role" id="role" required class="formbold-form-input">
+                        <option value="" disabled selected placeholder="Category of Medicine" </option>
+                        <option value="Pain Relievers">Pain Relievers</option>
+                        <option value="Antibiotics">Antibiotics</option>
+                        <option value="Antipyretics">Antipyretics</option>
+                        <option value="Antihistamines">Antihistamines</option>
+                        <option value="Antacids">Antacids</option>
+                    </select>
+                </div>
+            </div>
+            <div class="formbold-mb-5">
+                <div>
+                    <label for="rollnod" class="formbold-form-label">Quantity</label>
+                    <input type="textd" name="named" id="named" class="formbold-form-input" />
+                </div>
+            </div>
+            <div class="formbold-mb-5">
+                <label for="date" class="formbold-form-label"> Expiry Date </label>
+                <input type="date" name="date" id="date" class="formbold-form-input" />
+            </div>
+            <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto; flex: 0 0 auto;">
+                <button class="button" style="margin-top: 3%;">
+                    Add Record
+                </button>
+            </div>
+        </div>
+        <header style="padding: 1rem 0; color:aliceblue;">
+            <h1>Pill Records</h1>
+        </header>
+        <div class="task-form" style="flex-wrap: wrap; margin-right: 50%;">
+            <div class="task-form">
+                <button id="add-task" style=" height: 20px; width: 80px; margin-top: 12%;">
+                    Filter By
+                </button>
+
+
+                <div class="formbold-mb-5">
+                    <div>
+                        <label for="rollnod" class="formbold-form-label" style="margin-top: 14%;">Pills</label>
+                        <input type="textd" name="named" id="named" class="formbold-form-input" />
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="Category" class="formbold-form-label" style="margin-top: 16%;"> Category</label>
+                    <div class="role-dropdown">
+                        <select name="role" id="role" required class="formbold-form-input">
+                            <option value="" disabled selected placeholder="Category of Medicine" </option>
+                            <option value="Pain Relievers">Pain Relievers</option>
+                            <option value="Antibiotics">Antibiotics</option>
+                            <option value="Antipyretics">Antipyretics</option>
+                            <option value="Antihistamines">Antihistamines</option>
+                            <option value="Antacids">Antacids</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <script src="assets/js/scheduler.js"></script>
+    </main>
+</body>
+
+</html>
