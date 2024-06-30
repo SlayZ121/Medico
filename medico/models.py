@@ -71,3 +71,16 @@ class ModifiedSchedule(db.Model):
     doctor = db.relationship('User', back_populates='modified_schedules')
 
 User.modified_schedules = db.relationship('ModifiedSchedule', back_populates='doctor')
+
+class MedicalRecord(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    roll_number = db.Column(db.String(50), nullable=False)
+    phone_number = db.Column(db.String(15), nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    hostel = db.Column(db.String(100), nullable=False)
+    pills = db.Column(db.String(200), nullable=True)
+    complaint = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return f'MedicalRecord {self.id} for {self.name}'

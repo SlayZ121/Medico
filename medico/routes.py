@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from random import randint
 from .mailkey import mailkey, secretkey
-from medico.models import User, Appointment, ModifiedSchedule
+from medico.models import User, Appointment, ModifiedSchedule,MedicalRecord
 from medico import db
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import datetime, date, time
@@ -105,8 +105,13 @@ def chatbot():
 @app.route('/my-appointments')
 @login_required
 def my_appointments():
-    appointments = Appointment.query.filter_by(user_id=current_user.id).all()
-    return render_template('appointment1.html', appointments=appointments)
+     if current_user.has_role('medical_staff'):
+        
+        appointments = Appointment.query.filter_by(doctor_id=current_user.id).all()
+     else:
+          appointments = Appointment.query.filter_by(user_id=current_user.id).all()
+
+     return render_template('appointment1.html', appointments=appointments)
 
 @app.route('/bmi')
 @login_required
@@ -250,11 +255,68 @@ def get_modified_schedule():
 
     return jsonify({'exists': False})
 
-@app.route('/medicalrecord')
-@login_required
-def medrecord_page():
-    return render_template('records.html')
+@app.route('/medicalrecord', methods=['GET', 'POST'])
+def medicalrecord_page():
+    if request.method == 'POST':
+        name = request.form['named']
+        roll_number = request.form['rollnod']
+        phone_number = request.form['phoned']
+        date = datetime.strptime(request.form['date'], '%Y-%m-%d')
+        hostel = request.form['hostel']
+        pills = request.form['pills']
+        complaint = request.form['subject']
 
+        new_record = MedicalRecord(
+            name=name,
+            roll_number=roll_number,
+            phone_number=phone_number,
+            date=date,
+            hostel=hostel,
+            pills=pills,
+            complaint=complaint
+        )
+        
+        try:
+            db.session.add(new_record)
+            db.session.commit()
+            return redirect(url_for('medicalrecord_page'))
+        except Exception as e:
+            flash('There was an issue adding your record')
+
+    records = MedicalRecord.query.all()
+    return render_template('records.html', records=records)
+@app.route('/filtermedrecord', methods=['GET', 'POST'])
+@login_required
+def filter_medical():
+    if request.method == 'POST':
+        roll_number = request.form.get('rollNumber')
+        hostel = request.form.get('hostel')
+        date_str = request.form.get('date')
+
+        if not (roll_number or hostel or date_str):
+            return redirect(url_for('medicalrecord_page'))
+
+        query = MedicalRecord.query
+
+        if roll_number:
+            query = query.filter_by(roll_number=roll_number)
+
+        if hostel and hostel != "----":
+            query = query.filter_by(hostel=hostel)
+
+        if date_str:
+            try:
+                appointment_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+                query = query.filter_by(date=appointment_date)
+            except ValueError:
+                flash('Invalid date format. Please use YYYY-MM-DD.', 'danger')
+                return redirect(url_for('medicalrecord_page'))
+
+        records = query.all()
+        return render_template('records.html', records=records)
+
+    # Handle GET request if needed (though POST is expected for filtering)
+    return redirect(url_for('medicalrecord_page'))
 
 @app.route('/appointment', methods=['GET', 'POST'])
 @login_required
