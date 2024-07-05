@@ -4,38 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/scheduler.css">
     <title>Pill Maintenance</title>
-    <link rel="shortcut icon" href="assets/images/medico.png" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/medico.png') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pillmaintain.css') }}">
+    <style>
+        .task-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        header {
+            width: 100%;
+            background-color: #008080;
+            text-align: center;
+            padding: 1rem 0;
+            color: white;
+        }
+    </style>
 </head>
-<style>
-    .task-form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        /* Adjust the gap as needed */
-    }
-</style>
 
 <body>
     <header>
         <h1>Pill Maintenance</h1>
     </header>
     <main>
-        <div class="task-form" style="flex-wrap: wrap;">
-
+        <div class="task-form" style="flex-wrap: wrap; margin-top: 3%;">
             <div class="formbold-mb-5">
                 <div>
-                    <label for="rollnod" class="formbold-form-label">Pills</label>
-                    <input type="textd" name="named" id="named" class="formbold-form-input" />
+                    <label for="pills" class="formbold-form-label">Pills</label>
+                    <input type="text" name="pills" id="pills" class="formbold-form-input" />
                 </div>
             </div>
             <div class="input-box">
-                <label for="Category" class="formbold-form-label"> Category</label>
+                <label for="category" class="formbold-form-label"> Category</label>
                 <div class="role-dropdown">
-                    <select name="role" id="role" required class="formbold-form-input">
-                        <option value="" disabled selected placeholder="Category of Medicine" </option>
+                    <select name="category" id="category" required class="formbold-form-input">
+                        <option value="" disabled selected placeholder="Category of Medicine">Category of Medicine
+                        </option>
                         <option value="Pain Relievers">Pain Relievers</option>
                         <option value="Antibiotics">Antibiotics</option>
                         <option value="Antipyretics">Antipyretics</option>
@@ -46,41 +53,38 @@
             </div>
             <div class="formbold-mb-5">
                 <div>
-                    <label for="rollnod" class="formbold-form-label">Quantity</label>
-                    <input type="textd" name="named" id="named" class="formbold-form-input" />
+                    <label for="quantity" class="formbold-form-label">Quantity</label>
+                    <input type="text" name="quantity" id="quantity" class="formbold-form-input" />
                 </div>
             </div>
             <div class="formbold-mb-5">
-                <label for="date" class="formbold-form-label"> Expiry Date </label>
-                <input type="date" name="date" id="date" class="formbold-form-input" />
+                <label for="expiry-date" class="formbold-form-label"> Expiry Date </label>
+                <input type="date" name="expiry-date" id="expiry-date" class="formbold-form-input" />
             </div>
-            <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto; flex: 0 0 auto;">
+            <div class="modify-button" style="margin-top: 2%; flex: 0 0 auto;">
                 <button class="button" style="margin-top: 3%;">
                     Add Record
                 </button>
             </div>
         </div>
-        <header style="padding: 1rem 0; color:aliceblue;">
+        <header style="margin-top: 4%;">
             <h1>Pill Records</h1>
         </header>
         <div class="task-form" style="flex-wrap: wrap; margin-right: 50%;">
             <div class="task-form">
-                <button id="add-task" style=" height: 20px; width: 80px; margin-top: 12%;">
-                    Filter By
-                </button>
-
-
+                <button id="add-task" style="height: 40px; width: 80px; margin-top: 11%;">Filter By</button>
                 <div class="formbold-mb-5">
                     <div>
-                        <label for="rollnod" class="formbold-form-label" style="margin-top: 14%;">Pills</label>
-                        <input type="textd" name="named" id="named" class="formbold-form-input" />
+                        <label for="filter-pills" class="formbold-form-label" style="margin-top: 14%;">Pills</label>
+                        <input type="text" name="filter-pills" id="filter-pills" class="formbold-form-input" />
                     </div>
                 </div>
                 <div class="input-box">
-                    <label for="Category" class="formbold-form-label" style="margin-top: 16%;"> Category</label>
+                    <label for="filter-category" class="formbold-form-label" style="margin-top: 16%;"> Category</label>
                     <div class="role-dropdown">
-                        <select name="role" id="role" required class="formbold-form-input">
-                            <option value="" disabled selected placeholder="Category of Medicine" </option>
+                        <select name="filter-category" id="filter-category" required class="formbold-form-input">
+                            <option value="" disabled selected placeholder="Category of Medicine">Category of Medicine
+                            </option>
                             <option value="Pain Relievers">Pain Relievers</option>
                             <option value="Antibiotics">Antibiotics</option>
                             <option value="Antipyretics">Antipyretics</option>
@@ -90,8 +94,7 @@
                     </div>
                 </div>
             </div>
-
-            <script src="assets/js/scheduler.js"></script>
+        </div>
     </main>
 </body>
 
