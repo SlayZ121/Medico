@@ -2,8 +2,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background: url("{{ url_for('static', filename='images/footer-bg.png') }}") no-repeat center center fixed;
-    background-size: cover;    
+    background: url('assets/images/footer-bg.png') no-repeat center center fixed;
+    background-size: cover;
     background-color: #005761;
 }
 
@@ -13,67 +13,48 @@ h1 {
     font-size: 50px;
     font-weight: bold;
     margin: 0;
-    padding: 20px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.button-container {
+    margin-top: 0.00001px;
+    /* Add gap between the heading and button */
+    position: relative;
+    /* Changed to relative for easier alignment control */
+    margin-left: 450px;
 }
 
 .header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.button {
-    position: relative;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    padding-block: 0.15rem;
-    padding-inline: 0.45rem;
-    background-color: rgb(0 107 179);
-    border-radius: 8888px;
-    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    color: #ffff;
-    gap: 8px;
-    font-weight: bold;
-    border: 2px solid #ffffff4d;
-    outline: none;
-    overflow: hidden;
-    font-size: 15px;
+    text-align: center;
 }
 
-.icon {
-    width: 24px;
-    height: 24px;
-    transition: all 0.3s ease-in-out;
+
+
+.btn-readmore {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #005761;
+    border: 2px solid #ffffff;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: background-color 0.3s, border 0.3s;
+    margin-top: 20px;
 }
 
-.button:hover {
-    transform: scale(1.05);
-    border-color: #fff9;
+.btn-readmore:hover {
+    background-color: #ffffff;
+    color: #005761;
+    border: 2px solid #005761;
 }
 
-.button:hover .icon {
-    transform: translate(4px);
-}
-
-.button:hover::before {
-    animation: shine 1.5s ease-out infinite;
-}
-
-.button::before {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 100%;
-    background-image: linear-gradient(120deg,
-            rgba(255, 255, 255, 0) 30%,
-            rgba(255, 255, 255, 0.8),
-            rgba(255, 255, 255, 0) 70%);
-    top: 0;
-    left: -100px;
-    opacity: 0.6;
-}
 
 @keyframes shine {
     0% {
@@ -90,10 +71,11 @@ h1 {
 }
 
 .grid-container {
+    margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
-    padding: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    padding: 10px;
 }
 
 .card {
@@ -101,7 +83,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70%;
+    width: 80%;
     border-radius: 24px;
     line-height: 1.6;
     transition: all 0.64s cubic-bezier(0.23, 1, 0.32, 1);
@@ -109,6 +91,10 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-10px);
 }
 
 .content {
