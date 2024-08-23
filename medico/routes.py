@@ -443,10 +443,45 @@ def filter_medical():
     return redirect(url_for('medicalrecord_page'))
 
 
+@app.route('/filter_pills', methods=['GET', 'POST'])
+@login_required
+def filter_pills():
+    if request.method == 'POST':
+        name_filter = request.form.get('name')
+        category_filter = request.form.get('category')
+        expiry_date_str = request.form.get('expiry_date')
+
+        if not (name_filter or category_filter or expiry_date_str):
+            return redirect(url_for('pill_page'))
+
+        query = Pill.query
+
+        if name_filter:
+            query = query.filter(Pill.name.contains(name_filter))
+
+        if category_filter and category_filter != "----":
+            query = query.filter_by(category=category_filter)
+
+        if expiry_date_str:
+            try:
+                expiry_date = datetime.strptime(expiry_date_str, '%Y-%m-%d').date()
+                query = query.filter(Pill.expiry_dates.any(expiry_date))
+            except ValueError:
+                flash('Invalid date format. Please use YYYY-MM-DD.', 'danger')
+                return redirect(url_for('pill_page'))
+
+        pills = query.all()
+        return render_template('pillmaintenance.html', pills=pills)
+
+    # Handle GET request if needed (though POST is expected for filtering)
+    return redirect(url_for('pill_page'))
+
 @app.route('/pillrecord')
 @login_required
 def pill_page():
-    return render_template('pillmaintenance.html')
+      pills = Pill.query.all()
+      return render_template('pillmaintenance.html',pills=pills)
+
 @app.route('/add_pill', methods=['POST','GET'])
 def add_pill():
     name = request.form.get('name')

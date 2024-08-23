@@ -36,10 +36,11 @@
             </div>
             {% if current_user.is_authenticated and current_user.role == 'medical_staff'%}
             <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto;">
-                <a href="{{ url_for('modify_schedule', doctor_id=doctor.id) }}" class="button" style="margin-top: 3%;">
+                <a href="{{ url_for('modify_schedule', doctor_id=doctor.id) }}" class="button" style="margin-top: 3%; text-decoration: none;">
                     Modify
                 </a>
             </div>
+            
             {% endif %}
         </div>
         {% endfor %}

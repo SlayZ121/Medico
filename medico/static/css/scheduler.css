@@ -104,3 +104,63 @@ main {
 .modify-button {
     flex: 0 0 auto;
 }
+
+
+/* Table Styling */
+.pill-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.pill-table th, .pill-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pill-table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.pill-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.pill-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Optional: Style for the form */
+.task-form {
+    margin: 20px 0;
+}
+
+.formbold-form-label {
+    font-weight: bold;
+}
+
+.formbold-form-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+
