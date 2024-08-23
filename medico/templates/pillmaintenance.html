@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream
     <title>Pill Maintenance</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/medico.png') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/pillmaintain.css') }}">
@@ -23,6 +24,11 @@
             color: white;
         }
     </style>
+=======
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scheduler.css') }}">
+    <title>Pill Maintenance</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/medico.png') }}" type="image/svg+xml">
+>>>>>>> Stashed changes
 </head>
 
 <body>
@@ -30,6 +36,7 @@
         <h1>Pill Maintenance</h1>
     </header>
     <main>
+<<<<<<< Updated upstream
         <div class="task-form" style="flex-wrap: wrap; margin-top: 3%;">
             <div class="formbold-mb-5">
                 <div>
@@ -68,6 +75,48 @@
             </div>
         </div>
         <header style="margin-top: 4%;">
+=======
+        <form action="{{ url_for('add_pill') }}" method="POST">
+            <div class="task-form" style="flex-wrap: wrap;">
+
+                <div class="formbold-mb-5">
+                    <div>
+                        <label for="name" class="formbold-form-label">Pills</label>
+                        <input required type="text" name="name" id="name" class="formbold-form-input" />
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="category" class="formbold-form-label"> Category</label>
+                    <div class="role-dropdown">
+                        <select required name="category" id="category" required class="formbold-form-input">
+                            <option value="" disabled selected placeholder="Category of Medicine"></option>
+                            <option value="Pain Relievers">Pain Relievers</option>
+                            <option value="Antibiotics">Antibiotics</option>
+                            <option value="Antipyretics">Antipyretics</option>
+                            <option value="Antihistamines">Antihistamines</option>
+                            <option value="Antacids">Antacids</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formbold-mb-5">
+                    <div>
+                        <label for="quantity" class="formbold-form-label">Quantity</label>
+                        <input  required type="number" name="quantity" id="quantity" class="formbold-form-input" />
+                    </div>
+                </div>
+                <div class="formbold-mb-5">
+                    <label for="date" class="formbold-form-label"> Expiry Date </label>
+                    <input required type="date" name="date" id="date" class="formbold-form-input" />
+                </div>
+                <div class="modify-button" style="margin-top: 3%; flex: 0 0 auto; flex: 0 0 auto;">
+                    <button type="submit" class="button" style="margin-top: 3%;">
+                        Add Record
+                    </button>
+                </div>
+            </div>
+        </form>
+        <header style="padding: 1rem 0; color:aliceblue;">
+>>>>>>> Stashed changes
             <h1>Pill Records</h1>
         </header>
         <div class="task-form" style="flex-wrap: wrap; margin-right: 50%;">
@@ -75,6 +124,7 @@
                 <button id="add-task" style="height: 40px; width: 80px; margin-top: 11%;">Filter By</button>
                 <div class="formbold-mb-5">
                     <div>
+<<<<<<< Updated upstream
                         <label for="filter-pills" class="formbold-form-label" style="margin-top: 14%;">Pills</label>
                         <input type="text" name="filter-pills" id="filter-pills" class="formbold-form-input" />
                     </div>
@@ -85,6 +135,17 @@
                         <select name="filter-category" id="filter-category" required class="formbold-form-input">
                             <option value="" disabled selected placeholder="Category of Medicine">Category of Medicine
                             </option>
+=======
+                        <label for="name" class="formbold-form-label" style="margin-top: 14%;">Pills</label>
+                        <input type="text" name="name" id="name" class="formbold-form-input" />
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="category" class="formbold-form-label" style="margin-top: 16%;"> Category</label>
+                    <div class="role-dropdown">
+                        <select name="category" id="category" required class="formbold-form-input">
+                            <option value="" disabled selected placeholder="Category of Medicine"></option>
+>>>>>>> Stashed changes
                             <option value="Pain Relievers">Pain Relievers</option>
                             <option value="Antibiotics">Antibiotics</option>
                             <option value="Antipyretics">Antipyretics</option>
@@ -94,7 +155,12 @@
                     </div>
                 </div>
             </div>
+<<<<<<< Updated upstream
         </div>
+=======
+
+            <script src="{{ url_for('static', filename='js/scheduler.js') }}"></script>
+>>>>>>> Stashed changes
     </main>
 </body>
 

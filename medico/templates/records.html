@@ -285,6 +285,7 @@
             text-decoration: none;
             cursor: pointer;
         }
+        
     </style>
 </head>
 
@@ -338,7 +339,7 @@
                     <div style="flex: 1;">
                         <label for="subject" class="formbold-form-label">Complaint</label>
                         <textarea id="subject" name="subject" placeholder="Enter your complaint details"
-                            class="formbold-form-input" style="height:200px"></textarea>
+                            class="formbold-form-input" style="height:100px"></textarea>
                     </div>
                 </div>
             </div>
@@ -347,9 +348,11 @@
             </div>
         </form>
     </div>
+    <br>
+    <br>
     <div class="records">
         <h1 style="color: white;">Medical Records </h1>
-        <form method="POST" action="/filtermedrecord"><div class="task-form">
+        <form class="filter"method="POST" action="/filtermedrecord"><div class="task-form">
             <button id="add-task" style=" height: 40px; width: 80px; margin-top: 1.5%;">
                 Filter By
             </button>

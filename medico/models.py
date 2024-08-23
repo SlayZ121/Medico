@@ -3,7 +3,87 @@ from flask_login import UserMixin
 from flask import render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import numpy as np
+import re
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import NearestNeighbors
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import FunctionTransformer
 
+from sklearn.impute import SimpleImputer
+
+
+def scaling(dataframe):
+    # Exclude non-numerical columns before scaling
+    numeric_columns = dataframe.select_dtypes(include=['number']).columns
+    prep_data = dataframe[numeric_columns].copy()  # Copy only numeric data
+
+    # Impute missing values with the mean
+    imputer = SimpleImputer(strategy='mean')
+    prep_data_imputed = imputer.fit_transform(prep_data)
+
+    # Scale the data
+    scaler = StandardScaler()
+    prep_data_scaled = scaler.fit_transform(prep_data_imputed)
+
+    return prep_data_scaled, scaler
+
+
+def nn_predictor(prep_data):
+    neigh = NearestNeighbors(metric='cosine',algorithm='brute')
+    neigh.fit(prep_data)
+    return neigh
+
+def build_pipeline(neigh, scaler, params):
+    imputer = SimpleImputer(strategy='mean')
+    transformer = FunctionTransformer(neigh.kneighbors, kw_args=params)
+    pipeline = Pipeline([
+        ('imputer', imputer),  # Handle missing values
+        ('std_scaler', scaler),  # Standardize features
+        ('NN', transformer)  # Apply Nearest Neighbors
+    ])
+    return pipeline
+
+def extract_data(dataframe,ingredients):
+    extracted_data=dataframe.copy()
+    extracted_data=extract_ingredient_filtered_data(extracted_data,ingredients)
+    return extracted_data
+    
+def extract_ingredient_filtered_data(dataframe,ingredients):
+    extracted_data=dataframe.copy()
+    regex_string=''.join(map(lambda x:f'(?=.*{x})',ingredients))
+    extracted_data=extracted_data[extracted_data['RecipeIngredientParts'].str.contains(regex_string,regex=True,flags=re.IGNORECASE)]
+    return extracted_data
+
+def apply_pipeline(pipeline, _input, extracted_data):
+    _input = np.array(_input).reshape(1, -1)
+    return extracted_data.iloc[pipeline.transform(_input)[0]]
+
+def recommend(dataframe, _input, params={'n_neighbors': 5, 'return_distance': False}):
+    if dataframe.shape[0] >= params['n_neighbors']:
+        prep_data, scaler = scaling(dataframe)
+        neigh = nn_predictor(prep_data)
+        pipeline = build_pipeline(neigh, scaler, params)
+        return apply_pipeline(pipeline, _input, dataframe)
+    else:
+        return None
+
+def extract_quoted_strings(s):
+    # Find all the strings inside double quotes
+    strings = re.findall(r'"([^"]*)"', s)
+    # Join the strings with 'and'
+    return strings
+
+def output_recommended_recipes(dataframe):
+    if dataframe is not None:
+        output=dataframe.copy()
+        output=output.to_dict("records")
+        for recipe in output:
+            recipe['RecipeIngredientParts']=extract_quoted_strings(recipe['RecipeIngredientParts'])
+            recipe['RecipeInstructions']=extract_quoted_strings(recipe['RecipeInstructions'])
+    else:
+        output=None
+    return output
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -31,6 +111,7 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'User {self.username}'
+    
     
     @property
     def password(self):
@@ -84,3 +165,12 @@ class MedicalRecord(db.Model):
 
     def __repr__(self):
         return f'MedicalRecord {self.id} for {self.name}'
+
+class Pill(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    category = db.Column(db.String(50), nullable=False)
+    quantity = db.Column(db.Integer, default=0)
+    expiry_dates = db.Column(db.JSON)
+
+

@@ -46,10 +46,10 @@
               <li class="dropdown-item"><a href="{{ url_for('aptcheck_page') }}">Appointments</a></li>
               <li class="dropdown-item"><a href="{{ url_for('schedule_page') }}">Scheduler</a></li>
               <li class="dropdown-item"><a href="{{ url_for('bmi_page') }}">BMI</a></li>
-              <li class="dropdown-item"><a href="#dietary">Dietometer</a></li>
+              <li class="dropdown-item"><a href="{{ url_for('diet') }}">Dietometer</a></li>
               {% if current_user.is_authenticated and current_user.role == 'medical_staff'%}
-              <li class="dropdown-item"><a href="{{ url_for('medrecord_page') }}">Medical Records</a></li>
-              <li class="dropdown-item"><a href="#dietary">Pill store</a></li>
+              <li class="dropdown-item"><a href="{{ url_for('medicalrecord_page') }}">Medical Records</a></li>
+              <li class="dropdown-item"><a href="{{ url_for('pill_page') }}">Pill store</a></li>
               {% endif %}
               <li class="dropdown-item"><a href="{{ url_for('complaint_page') }}">Complaint</a></li>
             </ul>

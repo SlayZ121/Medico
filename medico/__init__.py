@@ -15,6 +15,6 @@ login_manager.login_view="login_page"
 login_manager.login_message_category="info"
 
 from medico import routes
-from medico.models import User, Appointment, ModifiedSchedule,MedicalRecord
+from medico.models import User, Appointment, ModifiedSchedule,MedicalRecord,Pill
 from .routes import bp as routes_bp
 app.register_blueprint(routes_bp)

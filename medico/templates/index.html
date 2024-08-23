@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Diet Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <style>
+        /* Reset some default styles */
+body, h1, label, input, select, button {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color and font for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Style the container to center content and add padding */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Style the header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #2c3e50;
+}
+
+/* Style the form elements */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Layout for rows with two form groups side by side */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+    </style>
+    <div class="container">
+        <header>
+            <h1>Automatic Diet Recommendation</h1>
+        </header>
+        <form method="post">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="2" max="120" step="1" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" name="height" min="50" max="300" step="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" name="weight" min="10" max="300" step="1" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="activity">Activity Level:</label>
+                    <select id="activity" name="activity" required>
+                        <option value="Little/no exercise">Little/no exercise</option>
+                        <option value="Light exercise">Light exercise</option>
+                        <option value="Moderate exercise (3-5 days/wk)">Moderate exercise (3-5 days/wk)</option>
+                        <option value="Very active (6-7 days/wk)">Very active (6-7 days/wk)</option>
+                        <option value="Extra active (very active & physical job)">Extra active (very active & physical job)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="weight_loss_option">Weight Goal:</label>
+                    <select id="weight_loss_option" name="weight_loss_option" required>
+                        <option value="Maintain weight">Maintain weight</option>
+                        <option value="Mild weight loss">Mild weight loss</option>
+                        <option value="Weight loss">Weight loss</option>
+                        <option value="Extreme weight loss">Extreme weight loss</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="number_of_meals">Number of Meals:</label>
+                <select id="number_of_meals" name="number_of_meals" required>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>
+</body>
+</html>

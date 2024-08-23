@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set a background color and font for the whole page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Style the container to center content and add padding */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Style the header */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #2c3e50;
+        }
+
+        /* Style the summary section */
+        .summary {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #eaf2f8;
+        }
+
+        .summary p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .summary .bmi {
+            color: #3498db;
+        }
+
+        .summary .calories {
+            color: #e74c3c;
+        }
+
+        .summary .goal {
+            color: #27ae60;
+        }
+
+        /* Style the meal recommendations section */
+        .recommendations {
+            margin-top: 20px;
+        }
+
+        .recommendations h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .meal {
+            margin-bottom: 20px;
+        }
+
+        .meal h3 {
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+
+        .meal ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .meal li {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .recipe-image {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+
+        .recipe-info {
+            font-size: 1em;
+        }
+
+        .recipe-info p {
+            margin: 5px 0;
+        }
+
+        .recipe-instructions {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Diet Recommendations</h1>
+        </header>
+        <section class="summary">
+            <p>Your BMI: <span class="bmi">{{ bmi }}</span> ({{ category }})</p>
+            <p>Calories needed to maintain weight: <span class="calories">{{ maintain_calories }}</span> kcal/day</p>
+            <p>Weight Goal: <span class="goal">{{ weight_loss_option }}</span></p>
+        </section>
+
+        <section class="recommendations">
+            <h2>Meal Recommendations</h2>
+            {% for meal in recommendations %}
+                <div class="meal">
+                    <h3>{{ meal[0]['Meal'] }}</h3>
+                    <ul>
+                        {% for recipe in meal %}
+                            <li>
+                                <img src="{{ recipe['image_link'] }}" alt="{{ recipe['Name'] }}" class="recipe-image">
+                                <div class="recipe-info">
+                                    <strong>{{ recipe['Name'] }}</strong> - {{ recipe['Nutrients']['Calories'] }} kcal
+                                    <p><strong>Fat:</strong> {{ recipe['Nutrients']['Fat Content'] }} g</p>
+                                    <p><strong>Saturated Fat:</strong> {{ recipe['Nutrients']['Saturated Fat Content'] }} g</p>
+                                    <p><strong>Cholesterol:</strong> {{ recipe['Nutrients']['Cholesterol Content'] }} mg</p>
+                                    <p><strong>Sodium:</strong> {{ recipe['Nutrients']['Sodium Content'] }} mg</p>
+                                    <p><strong>Carbs:</strong> {{ recipe['Nutrients']['Carbohydrate Content'] }} g</p>
+                                    <p><strong>Fiber:</strong> {{ recipe['Nutrients']['Fiber Content'] }} g</p>
+                                    <p><strong>Sugar:</strong> {{ recipe['Nutrients']['Sugar Content'] }} g</p>
+                                    <p><strong>Protein:</strong> {{ recipe['Nutrients']['Protein Content'] }} g</p>
+                                    <div class="recipe-instructions">
+                                        <strong>Instructions:</strong>
+                                        <p>{{ recipe['Instructions'] }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+</body>
+</html>

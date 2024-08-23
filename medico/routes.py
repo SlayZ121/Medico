@@ -6,14 +6,21 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from random import randint
 from .mailkey import mailkey, secretkey
-from medico.models import User, Appointment, ModifiedSchedule,MedicalRecord
+from medico.models import User, Appointment, ModifiedSchedule,MedicalRecord,Pill
 from medico import db
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import datetime, date, time
 from flask import Blueprint, request, jsonify, render_template
 import google.generativeai as genai
+from random import uniform as rnd
+import pandas as pd
+
+# Assuming get_images_links is a function from ImageFinder module that fetches image links
+from .ImageFinder import get_images_links as find_image
 
 bp = Blueprint('routes', __name__)
+
+recipes_df = pd.read_csv(r'C:\medicobtp\medico\recipes.csv')
 
 genai.configure(api_key=secretkey)
 
@@ -86,6 +93,123 @@ def send_otp(email):
         print(f"Failed to send email: {e}")
         return False
 
+
+class Generator:
+    def __init__(self, nutrition_input: list):
+        self.nutrition_input = nutrition_input
+
+    def generate(self):
+        # Use the recipes dataset to generate recipes
+        sample_recipes = recipes_df.sample(n=3).to_dict(orient='records')  # Sample 3 recipes
+        for recipe in sample_recipes:
+            recipe['Calories'] = recipe['Calories']
+            recipe['image_link'] = find_image(recipe['Name'])
+            # Include recipe instructions and nutritional content
+            recipe['Instructions'] = recipe['RecipeInstructions']
+            recipe['Nutrients'] = {
+                'Calories': recipe['Calories'],
+                'Fat Content': recipe['FatContent'],
+                'Saturated Fat Content': recipe['SaturatedFatContent'],
+                'Cholesterol Content': recipe['CholesterolContent'],
+                'Sodium Content': recipe['SodiumContent'],
+                'Carbohydrate Content': recipe['CarbohydrateContent'],
+                'Fiber Content': recipe['FiberContent'],
+                'Sugar Content': recipe['SugarContent'],
+                'Protein Content': recipe['ProteinContent']
+            }
+        return {"output": sample_recipes}
+
+class Person:
+    def __init__(self, age, height, weight, gender, activity, meals_calories_perc, weight_loss):
+        self.age = age
+        self.height = height
+        self.weight = weight
+        self.gender = gender
+        self.activity = activity
+        self.meals_calories_perc = meals_calories_perc
+        self.weight_loss = weight_loss
+
+    def calculate_bmi(self):
+        bmi = round(self.weight / ((self.height / 100) ** 2), 2)
+        return bmi
+
+    def display_result(self):
+        bmi = self.calculate_bmi()
+        if bmi < 18.5:
+            category = 'Underweight'
+            color = 'Red'
+        elif 18.5 <= bmi < 25:
+            category = 'Normal'
+            color = 'Green'
+        elif 25 <= bmi < 30:
+            category = 'Overweight'
+            color = 'Yellow'
+        else:
+            category = 'Obesity'
+            color = 'Red'
+        return bmi, category, color
+
+    def calculate_bmr(self):
+        if self.gender == 'Male':
+            bmr = 10 * self.weight + 6.25 * self.height - 5 * self.age + 5
+        else:
+            bmr = 10 * self.weight + 6.25 * self.height - 5 * self.age - 161
+        return bmr
+
+    def calories_calculator(self):
+        activities = ['Little/no exercise', 'Light exercise', 'Moderate exercise (3-5 days/wk)', 'Very active (6-7 days/wk)', 'Extra active (very active & physical job)']
+        weights = [1.2, 1.375, 1.55, 1.725, 1.9]
+        weight = weights[activities.index(self.activity)]
+        maintain_calories = self.calculate_bmr() * weight
+        return maintain_calories
+
+    def generate_recommendations(self):
+        total_calories = self.weight_loss * self.calories_calculator()
+        recommendations = []
+        for meal in self.meals_calories_perc:
+            meal_calories = self.meals_calories_perc[meal] * total_calories
+            recommended_nutrition = [
+                meal_calories, rnd(10, 40), rnd(0, 4), rnd(0, 30), rnd(0, 400), rnd(40, 75), rnd(4, 20), rnd(0, 10), rnd(30, 175)
+            ]
+            generator = Generator(recommended_nutrition)
+            recommended_recipes = generator.generate()['output']
+            for recipe in recommended_recipes:
+                recipe['image_link'] = find_image(recipe['Name'])
+            recommendations.append(recommended_recipes)
+        return recommendations
+
+@app.route('/diet', methods=['GET', 'POST'])
+@login_required
+def diet():
+    if request.method == 'POST':
+        age = int(request.form.get('age'))
+        height = int(request.form.get('height'))
+        weight = int(request.form.get('weight'))
+        gender = request.form.get('gender')
+        activity = request.form.get('activity')
+        weight_loss_option = request.form.get('weight_loss_option')
+        number_of_meals = int(request.form.get('number_of_meals'))
+
+        plans = ["Maintain weight", "Mild weight loss", "Weight loss", "Extreme weight loss"]
+        weights = [1, 0.9, 0.8, 0.6]
+        weight_loss = weights[plans.index(weight_loss_option)]
+
+        if number_of_meals == 3:
+            meals_calories_perc = {'breakfast': 0.35, 'lunch': 0.40, 'dinner': 0.25}
+        elif number_of_meals == 4:
+            meals_calories_perc = {'breakfast': 0.30, 'morning snack': 0.05, 'lunch': 0.40, 'dinner': 0.25}
+        else:
+            meals_calories_perc = {'breakfast': 0.30, 'morning snack': 0.05, 'lunch': 0.40, 'afternoon snack': 0.05, 'dinner': 0.20}
+
+        person = Person(age, height, weight, gender, activity, meals_calories_perc, weight_loss)
+        bmi, category, color = person.display_result()
+        maintain_calories = person.calories_calculator()
+
+        recommendations = person.generate_recommendations()
+        return render_template('results.html', bmi=bmi, category=category, color=color, maintain_calories=maintain_calories,
+                               weight_loss_option=weight_loss_option, recommendations=recommendations)
+    return render_template('index.html')
+
 @app.route('/')
 @app.route('/home')
 def home_page():
@@ -105,7 +229,7 @@ def chatbot():
 @app.route('/my-appointments')
 @login_required
 def my_appointments():
-     if current_user.has_role('medical_staff'):
+     if current_user.role == 'medical_staff':
         
         appointments = Appointment.query.filter_by(doctor_id=current_user.id).all()
      else:
@@ -317,6 +441,48 @@ def filter_medical():
 
     # Handle GET request if needed (though POST is expected for filtering)
     return redirect(url_for('medicalrecord_page'))
+
+
+@app.route('/pillrecord')
+@login_required
+def pill_page():
+    return render_template('pillmaintenance.html')
+@app.route('/add_pill', methods=['POST','GET'])
+def add_pill():
+    name = request.form.get('name')
+    category = request.form.get('category')
+    quantity = int(request.form.get('quantity'))
+    expiry_date_input = request.form.get('date')
+
+    expiry_dates = []
+
+    if expiry_date_input:
+        expiry_date = datetime.strptime(expiry_date_input, '%Y-%m-%d').date()
+        expiry_dates.append(expiry_date.strftime('%Y-%m-%d'))
+
+    pill = Pill.query.filter_by(name=name, category=category).first()
+
+    if pill:
+        pill.quantity += quantity
+        
+        if expiry_dates:
+            if pill.expiry_dates is None:
+                pill.expiry_dates = []
+
+            for date_str in expiry_dates:
+                if date_str not in pill.expiry_dates:
+                    pill.expiry_dates.append(date_str)
+
+        db.session.commit()
+        flash('Pill quantity updated and new expiry date added successfully!', 'success')
+    else:
+        new_pill = Pill(name=name, category=category, quantity=quantity, expiry_dates=expiry_dates)
+        db.session.add(new_pill)
+        db.session.commit()
+        flash('New pill added successfully!', 'success')
+
+    return redirect(url_for('pill_page'))
+
 
 @app.route('/appointment', methods=['GET', 'POST'])
 @login_required
