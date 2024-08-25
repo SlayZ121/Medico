@@ -243,6 +243,91 @@ body {
   transform: translateX(0);
 }
 
+/*Photos*/
+.medico-wrapper {
+  padding: 10px 10%;
+}
+
+#medico-card-area {
+  padding: 20px 0;
+  /* Reduced padding to decrease space above the photos */
+}
+
+.medico-box-area {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Increased the min-width of the grid columns */
+  grid-gap: 30px;
+  /* Adjusted grid gap for better spacing */
+  margin-top: 20px;
+  /* Reduced margin to decrease space above the photos */
+}
+
+.medico-box img {
+  width: 100%;
+  height: 300px;
+  /* Set a fixed height for the images */
+  object-fit: cover;
+  /* Ensure images cover the area without distortion */
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.medico-box {
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.medico-overlay {
+  width: 100%;
+  height: 0;
+  background: linear-gradient(transparent, hsl(186, 72%, 24%));
+  border-radius: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  font-size: 14px;
+  transition: height 0.5s;
+}
+
+.medico-overlay h3 {
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 5px;
+  margin-top: 40%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20 px;
+  letter-spacing: 0.1px;
+}
+
+.medico-overlay p {
+  margin-top: 5px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: justify;
+  padding: 2px 7px;
+}
+
+.medico-box:hover img {
+  transform: scale(1.1);
+}
+
+.medico-box:hover .medico-overlay {
+  height: 100%;
+}
+
+
 /*FOOTER*/
 .contact-list::after {
   content: none;
